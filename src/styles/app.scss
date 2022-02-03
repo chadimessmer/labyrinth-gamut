@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    color: black;
+}
+
+@import "./exemple";
+@import "./titleTrace";
+@import "./home";
+@import "./lounge";
+@import "./visionary";
+@import "./vision";
+@import "./chatroom";
+@import "./support";
+
+html, body {
+    height: 100%;
+    line-height: 1.8;
+    font-family: sans-serif;
+  }
+
+html {
+    position: relative;
+}

@@ -1,0 +1,1 @@
+const initState={trace:[],articles:[],chatrooms:[],vision:[],visionary:[],support:[]},tracesReducer=(a=initState,t)=>{switch(t.type){case"FETCH_TRACES":return{...a,trace:t.payload.trace,articles:t.payload.articles,chatrooms:t.payload.chatrooms,vision:t.payload.vision,visionary:t.payload.visionary,support:t.payload.support};default:return{...a}}};export default tracesReducer;

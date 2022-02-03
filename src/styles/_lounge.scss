@@ -1,0 +1,44 @@
+.lounge{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    flex-wrap: wrap;
+    // justify-content: space-around;
+    // align-content: space-around;
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        width: 100vw;
+    }
+    .vision{
+        background: rgb(255,255,255);
+        background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(9,56,183,1) 30%); 
+    }
+    .chatrooms{
+        background: rgb(255,239,95);
+        background: linear-gradient(0deg, rgba(255,239,95,1) 0%, rgba(0,0,0,1) 27%, rgba(0,0,0,1) 60%, rgba(9,56,183,1) 100%);     
+    }
+
+    .visionarys {
+        background: rgb(255,99,71);
+        background: linear-gradient(0deg, rgba(255,99,71,1) 0%, rgba(255,239,95,1) 20%);
+        h2{
+            color: black;
+        } 
+    }
+
+    .support{
+        background: rgb(255,99,71);
+        h2{
+            color: black;
+        }
+
+    }
+}
