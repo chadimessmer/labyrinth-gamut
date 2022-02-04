@@ -6,6 +6,7 @@ import { loadTraces } from "../actions/tracesAction";
 import Trace from "../components/Trace";
 import { Link } from "react-router-dom";
 import { Route } from "react-router-dom";
+import uuid from "react-uuid";
 import Lounge from "./Lounge";
 
 const Home = () => {
@@ -21,14 +22,14 @@ const Home = () => {
       <h1 className="home-title">LABYRINTH</h1>
       <div className="home-links-container">
         <Link to="labyrinth">
-          <div className="title-box">
+          <div key={uuid()} className="title-box">
             <div className="title-box-background"></div>
             <h3 className="title-intro">Enter</h3>
           </div>
         </Link>
         {trace.map((trace) => (
-          <Link to={trace.attributes.title}>
-            <Trace title={trace.attributes.title} key={trace.id} />
+          <Link to={"/trace/" + trace.id}>
+            <Trace title={trace.attributes.title} key={uuid()} />
           </Link>
         ))}
         <Link to="/lounge">

@@ -20,7 +20,7 @@ const Vision = () => {
         </div>
         <div className="vision-content">
           <h2>VISION</h2>
-          <ReactMarkdown className="vision-text">{vision.attributes.content}</ReactMarkdown>
+          {vision.attributes !== undefined && <ReactMarkdown className="vision-text">{vision.attributes.content}</ReactMarkdown>}
         </div>
       </div>
     </div>

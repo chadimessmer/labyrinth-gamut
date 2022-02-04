@@ -20,7 +20,8 @@ const Support = () => {
         </div>
         <div className="support-content">
           <h2>SUPPORT</h2>
-          <ReactMarkdown className="support-text">{support.attributes.text}</ReactMarkdown>
+          {support.attributes !== undefined && <ReactMarkdown className="support-text">{support.attributes.text}</ReactMarkdown>}
+
           <a href="http://www.paypal.com" target="blank">
             <div className="support-button">Unterstütze uns</div>{" "}
           </a>

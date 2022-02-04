@@ -1,0 +1,14 @@
+.single-article {
+    width: auto;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
