@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadTraces } from "../actions/tracesAction";
 import { Link, useLocation } from "react-router-dom";
 import uuid from "react-uuid";
+import Banner from "../components/Banner";
 
 const Chat = () => {
   const dispatchVision = useDispatch();
@@ -24,6 +25,7 @@ const Chat = () => {
   });
   return (
     <div className="chatroom-page">
+      <Banner subTitle={"Lounge"} />
       {thisChatRoom[0] !== undefined && <h2>{thisChatRoom[0].attributes.title}</h2>}
       {thisChatRoom[0] !== undefined && <p>{thisChatRoom[0].attributes.introduction}</p>}
     </div>

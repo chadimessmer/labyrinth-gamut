@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadTraces } from "../actions/tracesAction";
 import ReactMarkdown from "react-markdown";
+import uuid from "react-uuid";
 
 const SingleArticle = ({ title }) => {
   const { articles } = useSelector((state) => state.traces);
@@ -11,11 +12,9 @@ const SingleArticle = ({ title }) => {
   var thisSingleArticle = articles.filter((obj) => {
     return obj.id === title.id;
   });
-  console.log(thisSingleArticle);
   let thisTitle = thisSingleArticle[0].attributes.title;
   let thisSubTitle = thisSingleArticle[0].attributes.subtitle;
   let thisAuthor = thisSingleArticle[0].attributes.author;
-  console.log(thisSingleArticle[0].attributes.type);
   let contentList = thisSingleArticle[0].attributes.type;
 
   return (
@@ -26,7 +25,7 @@ const SingleArticle = ({ title }) => {
         <p>{thisAuthor}</p>
         {contentList.map((contentList) => {
           if (contentList.text) {
-            return <ReactMarkdown>{contentList.text}</ReactMarkdown>;
+            return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
           }
         })}
       </div>

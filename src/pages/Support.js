@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { loadTraces } from "../actions/tracesAction";
+import Banner from "../components/Banner";
 
 const Support = () => {
   const dispatchVision = useDispatch();
@@ -15,9 +16,7 @@ const Support = () => {
   return (
     <div className="support-page">
       <div className="support-wrapper">
-        <div className="title-support">
-          <h1 className="lab-title">labyrinth Lounge</h1>
-        </div>
+        <Banner subTitle={"Lounge"} />
         <div className="support-content">
           <h2>SUPPORT</h2>
           {support.attributes !== undefined && <ReactMarkdown className="support-text">{support.attributes.text}</ReactMarkdown>}

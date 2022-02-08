@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Route } from "react-router-dom";
 import uuid from "react-uuid";
 import Lounge from "./Lounge";
+import Banner from "../components/Banner";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Home = () => {
   console.log(trace);
   return (
     <div className="home">
-      <h1 className="home-title">LABYRINTH</h1>
+      <Banner />
       <div className="home-links-container">
         <Link to="labyrinth">
           <div key={uuid()} className="title-box">
@@ -28,8 +29,8 @@ const Home = () => {
           </div>
         </Link>
         {trace.map((trace) => (
-          <Link to={"/trace/" + trace.id}>
-            <Trace title={trace.attributes.title} key={uuid()} />
+          <Link key={uuid()} to={"/trace/" + trace.id}>
+            <Trace title={trace.attributes.title} />
           </Link>
         ))}
         <Link to="/lounge">

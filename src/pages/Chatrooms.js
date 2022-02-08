@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadTraces } from "../actions/tracesAction";
 import { Link } from "react-router-dom";
 import uuid from "react-uuid";
+import Banner from "../components/Banner";
 
 const Chatroom = () => {
   const dispatchVision = useDispatch();
@@ -19,9 +20,7 @@ const Chatroom = () => {
   return (
     <div className="chatroom-page">
       <div className="chatroom-wrapper">
-        <div className="title-chatroom">
-          <h1 className="lab-title">labyrinth Lounge</h1>
-        </div>
+        <Banner subTitle={"Lounge"} />
         <div className="chatroom-content">
           <h2>Chatroom</h2>
           <div>
@@ -29,8 +28,8 @@ const Chatroom = () => {
               <p>Start new discussion</p>
             </Link>
             {chatrooms.map((chatrooms) => (
-              <Link to={"/chatroom/" + chatrooms.id} title={chatrooms.attributes.title}>
-                <p key={uuid()}>{chatrooms.attributes.title}</p>
+              <Link key={uuid()} to={"/chatroom/" + chatrooms.id} title={chatrooms.attributes.title}>
+                <p>{chatrooms.attributes.title}</p>
               </Link>
             ))}
           </div>

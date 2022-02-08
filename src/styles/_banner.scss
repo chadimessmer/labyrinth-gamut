@@ -1,0 +1,15 @@
+.banner-container{
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(white 70%, transparent);
+    div{
+        font-size: 3em;
+    }
+}

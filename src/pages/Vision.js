@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { loadTraces } from "../actions/tracesAction";
+import Banner from "../components/Banner";
 
 const Vision = () => {
   const dispatchVision = useDispatch();
@@ -15,9 +16,7 @@ const Vision = () => {
   return (
     <div className="vision-page">
       <div className="vision-wrapper">
-        <div className="title-vision">
-          <h1 className="lab-title">labyrinth Lounge</h1>
-        </div>
+        <Banner subTitle={"Lounge"} />
         <div className="vision-content">
           <h2>VISION</h2>
           {vision.attributes !== undefined && <ReactMarkdown className="vision-text">{vision.attributes.content}</ReactMarkdown>}
