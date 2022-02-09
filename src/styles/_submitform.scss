@@ -1,0 +1,25 @@
+.submit-form{
+    display: flex;
+
+    input{
+        height: 20px;
+        width: 100%;
+        background-color: #FF6347;
+        border: solid 2px black;
+
+    }
+
+    button {
+        width: 200px !important;
+        height: 30px;
+        font-size: 20px;
+        margin: 0 auto;
+    }
+
+    textarea{
+        height: 200px !important;
+        background-color: #FF6347 ;
+        border: solid 2px black;
+
+    }
+}

@@ -10,6 +10,8 @@ import Support from "./pages/Support";
 import NewChat from "./pages/NewChat";
 import Chat from "./pages/Chat";
 import SingleTrace from "./pages/SingleTracePage";
+import Contribution from "./pages/Contribution";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // REDUX SETUP
@@ -36,6 +38,7 @@ ReactDOM.render(
           <Route path="/newchat" element={<NewChat />} />
           <Route path="/chatroom/:id" element={<Chat />} />
           <Route path="/trace/:id" element={<SingleTrace />} />
+          <Route path="/contribution/:id" element={<Contribution />} />
         </Routes>
       </Router>
       <App />

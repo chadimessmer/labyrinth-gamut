@@ -1,14 +1,14 @@
 import "../styles/app.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadTraces } from "../actions/tracesAction";
 import ReactMarkdown from "react-markdown";
 import uuid from "react-uuid";
+import { motion, AnimateSharedLayout } from "framer-motion";
+import Toggle from "./Toggle";
 
 const SingleArticle = ({ title }) => {
   const { articles } = useSelector((state) => state.traces);
-  console.log(articles);
-  console.log(title);
   var thisSingleArticle = articles.filter((obj) => {
     return obj.id === title.id;
   });
@@ -20,14 +20,19 @@ const SingleArticle = ({ title }) => {
   return (
     <div>
       <div className="single-article">
-        <h2>{thisTitle}</h2>
-        <h3>{thisSubTitle}</h3>
-        <p>{thisAuthor}</p>
-        {contentList.map((contentList) => {
-          if (contentList.text) {
-            return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
-          }
-        })}
+        <AnimateSharedLayout>
+          <Toggle thisSubTitle={thisSubTitle} thisTitle={thisTitle}>
+            <div className="article-content">
+              {contentList.map((contentList) => {
+                if (contentList.text) {
+                  return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
+                }
+              })}
+              <p>{thisAuthor}</p>
+            </div>
+            <div className="block"></div>
+          </Toggle>
+        </AnimateSharedLayout>
       </div>
     </div>
   );

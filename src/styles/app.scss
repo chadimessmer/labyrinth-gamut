@@ -19,6 +19,9 @@ a{
 @import "./singleArticle";
 @import "./singlePageTrace";
 @import "./banner";
+@import "./contribution";
+@import "./submitform";
+
 html, body {
     height: 100%;
     line-height: 1.8;
@@ -27,4 +30,8 @@ html, body {
 
 html {
     position: relative;
+}
+
+a {
+    text-decoration: none;
 }
