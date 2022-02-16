@@ -5,6 +5,7 @@ const initState = {
   vision: [],
   visionary: [],
   support: [],
+  slide: [],
 };
 
 const tracesReducer = (state = initState, action) => {
@@ -18,6 +19,7 @@ const tracesReducer = (state = initState, action) => {
         vision: action.payload.vision,
         visionary: action.payload.visionary,
         support: action.payload.support,
+        slide: action.payload.slide,
       };
     default:
       return { ...state };

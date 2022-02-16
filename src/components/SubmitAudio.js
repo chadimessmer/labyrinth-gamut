@@ -1,8 +1,13 @@
 import "../styles/app.scss";
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SubmitAudio = ({ thisTrace }) => {
+  const [hasContributed, setHasContributed] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [isWriting, setIswriting] = useState(true);
+
   let url = "https://labyrinthbackend.herokuapp.com/api/articles";
   let urlUpload = "https://labyrinthbackend.herokuapp.com/api/upload";
   function submitNewAudio(e) {
@@ -12,8 +17,9 @@ const SubmitAudio = ({ thisTrace }) => {
     const value = Object.fromEntries(dataForm.entries());
     const relatedId = { id: thisTrace[0].id };
     // console.log(thisTrace);
-    const textSend = value.text;
 
+    setIswriting(false);
+    setIsSent(true);
     const finalValue = {};
     finalValue.author = value.author;
     finalValue.title = value.title;
@@ -35,6 +41,8 @@ const SubmitAudio = ({ thisTrace }) => {
           .post(urlUpload, audio)
           .then((res) => {
             console.log(res);
+            setHasContributed(true);
+            setIsSent(false);
           })
           .catch(function (error) {
             console.log(error.response);
@@ -46,20 +54,33 @@ const SubmitAudio = ({ thisTrace }) => {
   }
   return (
     <div className="submit-form">
-      <h2>Submit an Audio</h2>
-      <form name="submit-audio" onSubmit={submitNewAudio}>
-        <label for="name">Name </label> <br />
-        <input id="name" name="author" type="text"></input> <br />
-        <label for="title">Title</label> <br />
-        <input id="title" name="title" type="text"></input> <br />
-        <label for="file">Audio</label> <br />
-        <input id="file" type="file" name="file" accept="audio/*"></input> <br />
-        <label for="website">Link</label> <br />
-        <input type="link" name="website" id="website"></input>
-        <button type="submit" className="contribute-button">
-          Continue
-        </button>
-      </form>
+      {isWriting && (
+        <div>
+          <h2>Submit an Audio</h2>
+          <form name="submit-audio" onSubmit={submitNewAudio}>
+            <label htmlFor="name">Name </label> <br />
+            <input required id="name" name="author" type="text"></input> <br />
+            <label htmlFor="title">Title</label> <br />
+            <input required id="title" name="title" type="text"></input> <br />
+            <label htmlFor="file">Audio</label> <br />
+            <input required id="file" type="file" name="file" accept="audio/*"></input> <br />
+            <label htmlFor="website">Link</label> <br />
+            <input type="link" name="website" id="website"></input>
+            <button type="submit" className="contribute-button">
+              Continue
+            </button>
+          </form>
+        </div>
+      )}
+      {isSent && <div>Please wait</div>}
+      {hasContributed && (
+        <div>
+          <p>Thank you</p>
+          <Link to={"/trace/" + thisTrace[0].id}>
+            <div className="contribute-button">Continue</div>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

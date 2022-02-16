@@ -5,9 +5,7 @@ import { loadTraces } from "../actions/tracesAction";
 // Components
 import Trace from "../components/Trace";
 import { Link } from "react-router-dom";
-import { Route } from "react-router-dom";
 import uuid from "react-uuid";
-import Lounge from "./Lounge";
 import Banner from "../components/Banner";
 
 const Home = () => {
@@ -28,6 +26,7 @@ const Home = () => {
             <h3 className="title-intro">Enter</h3>
           </div>
         </Link>
+
         {trace.map((trace) => (
           <Link key={uuid()} to={"/trace/" + trace.id}>
             <Trace title={trace.attributes.title} />

@@ -1,6 +1,7 @@
 const baseUrl = "https://labyrinthbackend.herokuapp.com/api";
 
 const articlesApi = "/articles?populate=*";
+const articleSlide = "/articles?populate=type.imageslider.imageslider?populate=*";
 const chatroomsApi = "/chatrooms";
 const tracesApi = "/traces?populate=*";
 const visionApi = "/vision?populate=*";
@@ -13,3 +14,4 @@ export const chatroomsUrl = () => `${baseUrl}${chatroomsApi}`;
 export const visionUrl = () => `${baseUrl}${visionApi}`;
 export const visionaryUrl = () => `${baseUrl}${visonarysApi}`;
 export const supportUrl = () => `${baseUrl}${supportApi}`;
+export const slideUrl = () => `${baseUrl}${articleSlide}`;

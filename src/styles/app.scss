@@ -21,6 +21,8 @@ a{
 @import "./banner";
 @import "./contribution";
 @import "./submitform";
+@import '~video-react/styles/scss/video-react'; 
+@import "./slideshow";
 
 html, body {
     height: 100%;
@@ -35,3 +37,10 @@ html {
 a {
     text-decoration: none;
 }
+
+audio{
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    object-fit: contain;
+    }

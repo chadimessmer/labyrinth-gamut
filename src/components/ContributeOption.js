@@ -57,7 +57,7 @@ const ContributeOption = ({ thisTrace }) => {
             Submit an Audio
           </div>
           <div onClick={choicePdf} className="contribute-button">
-            Submit PDF
+            Submit a PDF
           </div>
           <div onClick={choiceText} className="contribute-button">
             Submit a Text

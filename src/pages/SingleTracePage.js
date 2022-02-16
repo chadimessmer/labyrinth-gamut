@@ -17,7 +17,7 @@ const SingleTracePage = ({ children }) => {
     dispatch(loadTraces());
   }, [dispatch]);
 
-  const { trace } = useSelector((state) => state.traces);
+  const { trace, slide } = useSelector((state) => state.traces);
 
   const location = useLocation();
   let locationId = location.pathname.substring(7);
@@ -29,13 +29,11 @@ const SingleTracePage = ({ children }) => {
 
   if (thisTrace[0]) {
     contributions = thisTrace[0].attributes.public_contribution;
-    console.log(contributions);
 
     for (let id of thisTrace[0].attributes.articles.data) {
       thisArticleId.push({ id: id.id });
     }
   }
-  console.log(thisTrace);
 
   return (
     <div layout className="single-page-trace">
@@ -47,7 +45,7 @@ const SingleTracePage = ({ children }) => {
             {thisTrace[0] !== undefined && <motion.p layout>{thisTrace[0].attributes.introduction}</motion.p>}
           </AnimateSharedLayout>
           {thisArticleId.map((thisArticleId) => (
-            <SingleArticle title={thisArticleId} key={uuid()} />
+            <SingleArticle slide={slide} title={thisArticleId} key={uuid()} />
           ))}
           <div>
             {contributions && (

@@ -41,7 +41,6 @@ ReactDOM.render(
           <Route path="/contribution/:id" element={<Contribution />} />
         </Routes>
       </Router>
-      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

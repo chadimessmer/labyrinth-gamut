@@ -1,0 +1,24 @@
+
+.each-slide > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 700px;
+  }
+  
+  .each-slide span {
+    padding: 20px;
+    font-size: 20px;
+    background: #efefef;
+    text-align: center;
+  }
+
+  .react-slideshow-container + ul.indicators .each-slideshow-indicator::before{
+    background: white !important;
+  }
+
+  
+  
