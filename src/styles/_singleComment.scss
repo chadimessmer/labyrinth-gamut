@@ -1,0 +1,21 @@
+.avatar {
+    width: 40px;
+    height: 40px;
+    filter: blur(4px);
+}
+
+.title-avatar {
+    display: flex;
+    align-items: center;
+    p{
+        padding-left: 10px;
+    }
+    div{
+        // padding-left: 10px;
+
+    }
+}
+
+.single-comment{
+    margin: 20px 0px 20px 0px;
+}

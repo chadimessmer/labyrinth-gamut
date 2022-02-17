@@ -8,6 +8,7 @@ import Banner from "../components/Banner";
 import RecursiveContainer from "../components/SingleComment";
 import axios from "axios";
 import PostComment from "../components/PostComment";
+import AnswerChat from "../components/AnswerChat";
 
 const Chat = () => {
   const dispatchVision = useDispatch();
@@ -18,31 +19,72 @@ const Chat = () => {
   //   let { chatrooms } = useSelector((state) => state.traces);
   const location = useLocation();
   let locationId = location.pathname.substring(10);
-  let { chatrooms } = useSelector((state) => state.traces);
+  let { chatrooms, comment } = useSelector((state) => state.traces);
   console.log(chatrooms);
-  var thisChatRoom = chatrooms.filter((obj) => {
+  let thisChatRoom = chatrooms.filter((obj) => {
     return obj.id === parseInt(locationId);
   });
   let chatRoomId;
   if (thisChatRoom[0]) {
     chatRoomId = thisChatRoom[0].id;
   }
-  const chatUrl = "https://labyrinthbackend.herokuapp.com/api/comments/api::chatroom.chatroom:";
-  let comments;
+  console.log(comment);
+  var articlesOrdered;
+  let finalComment = [];
+  let reorderedComment;
+  let reversedComment;
+  if (comment[0]) {
+    articlesOrdered = comment.filter((obj) => {
+      return obj.attributes.chatroom.data.id === parseInt(locationId);
+    });
+    if (articlesOrdered[0]) {
+      console.log(articlesOrdered);
+      articlesOrdered.sort(function (a, b) {
+        return a.id - b.id;
+      });
+      reversedComment = articlesOrdered.reverse();
+      for (let com of reversedComment) {
+        com["answer"] = [];
+      }
+      console.log(reversedComment);
+      if (reversedComment.length > 0) {
+        for (let id of reversedComment) {
+          if (id.attributes.chatmessage.data) {
+            let relatedId = id.attributes.chatmessage.data.id;
+            reversedComment.find((x) => x.id === relatedId)["answer"].push(id);
+          } else {
+            finalComment.push(id);
+          }
+        }
+      }
+      console.log(reversedComment);
+      if (reversedComment[0]) {
+        for (let id of reversedComment) {
+          let children = id.answer;
 
-  axios.get(chatUrl + chatRoomId).then(function (response) {
-    console.log(response);
+          if (children.length > 0) {
+            children.reverse();
+          }
+        }
+      }
+      console.log(finalComment);
 
-    comments = response.data;
-  });
+      reorderedComment = finalComment.reverse();
 
-  console.log(chatRoomId);
+      console.log(chatRoomId);
+    }
+  }
+
   return (
     <div className="chatroom-page">
       <Banner subTitle={"Lounge"} />
-      {thisChatRoom[0] !== undefined && <h2>{thisChatRoom[0].attributes.title}</h2>}
-      {thisChatRoom[0] !== undefined && <p>{thisChatRoom[0].attributes.introduction}</p>}
-      <PostComment chatRoomId={chatRoomId} />
+      <div className="chat-container">
+        {thisChatRoom[0] !== undefined && <h2>{thisChatRoom[0].attributes.title}</h2>}
+        {thisChatRoom[0] !== undefined && <p>{thisChatRoom[0].attributes.introduction}</p>}
+        {reversedComment !== undefined &&
+          reorderedComment.map((reorderedComment) => <RecursiveContainer chatRoomId={chatRoomId} key={uuid()} finalComment={reorderedComment} />)}
+        <AnswerChat chatRoomId={chatRoomId} />
+      </div>
     </div>
   );
 };

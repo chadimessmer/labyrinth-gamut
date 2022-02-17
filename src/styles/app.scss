@@ -1,11 +1,5 @@
-*{
-    margin: 0;
-    padding: 0;
-}
 
-a{
-    color: black;
-}
+
 
 @import "./exemple";
 @import "./titleTrace";
@@ -23,11 +17,19 @@ a{
 @import "./submitform";
 @import '~video-react/styles/scss/video-react'; 
 @import "./slideshow";
+@import "./singleComment";
+@import "./chat";
+*{
+    margin: 0;
+    padding: 0;
+}
 
 html, body {
     height: 100%;
     line-height: 1.8;
     font-family: sans-serif;
+    margin: 0;
+    padding: 0;
   }
 
 html {
@@ -36,6 +38,8 @@ html {
 
 a {
     text-decoration: none;
+    color: black;
+
 }
 
 audio{

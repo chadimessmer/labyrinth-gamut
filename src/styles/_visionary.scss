@@ -1,14 +1,15 @@
 
 .visionary-wrapper {
-    position:absolute;
-    width: 100%;
+    width: auto;
+    min-width: 100vw;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
     background: rgba(255,240,96,1);
 
-    height: 100%;
+    height: auto;
+    min-height: 100vh;
 
     .title-visionary{
         text-align: center;

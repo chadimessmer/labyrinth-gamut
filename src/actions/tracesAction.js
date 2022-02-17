@@ -1,5 +1,5 @@
 import axios from "axios";
-import { tracesUrl, articlesUrl, chatroomsUrl, visionUrl, visionaryUrl, supportUrl, slideUrl } from "../api";
+import { tracesUrl, articlesUrl, chatroomsUrl, visionUrl, visionaryUrl, supportUrl, slideUrl, commmentUrl } from "../api";
 
 export const loadTraces = () => async (dispatch) => {
   const tracesData = await axios.get(tracesUrl());
@@ -9,6 +9,7 @@ export const loadTraces = () => async (dispatch) => {
   const visionaryData = await axios.get(visionaryUrl());
   const supportData = await axios.get(supportUrl());
   const slideData = await axios.get(slideUrl());
+  const commentData = await axios.get(commmentUrl());
 
   dispatch({
     type: "FETCH_TRACES",
@@ -20,6 +21,7 @@ export const loadTraces = () => async (dispatch) => {
       visionary: visionaryData.data.data,
       support: supportData.data.data,
       slide: slideData.data.data,
+      comment: commentData.data.data,
     },
   });
 };

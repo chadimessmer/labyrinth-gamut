@@ -7,6 +7,7 @@ const tracesApi = "/traces?populate=*";
 const visionApi = "/vision?populate=*";
 const visonarysApi = "/visionary?populate=*";
 const supportApi = "/support";
+const commentApi = "/chatmessages?populate=*";
 
 export const tracesUrl = () => `${baseUrl}${tracesApi}`;
 export const articlesUrl = () => `${baseUrl}${articlesApi}`;
@@ -15,3 +16,4 @@ export const visionUrl = () => `${baseUrl}${visionApi}`;
 export const visionaryUrl = () => `${baseUrl}${visonarysApi}`;
 export const supportUrl = () => `${baseUrl}${supportApi}`;
 export const slideUrl = () => `${baseUrl}${articleSlide}`;
+export const commmentUrl = () => `${baseUrl}${commentApi}`;

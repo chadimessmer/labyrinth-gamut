@@ -17,6 +17,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 const SingleArticle = ({ title, slide }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [height, setHeight] = useState("0");
   let incrementCounter = () => setPageNumber(pageNumber + 1);
   let decrementCounter = () => setPageNumber(pageNumber - 1);
 
@@ -90,27 +91,44 @@ const SingleArticle = ({ title, slide }) => {
       decrementCounter();
     }
   };
+
+  const style = {
+    maxHeight: height,
+  };
+
+  let idDiv = uuid();
+  const article = document.getElementById(idDiv);
+
+  const changeHeight = () => {
+    if (height === "0") {
+      setHeight("100%");
+    } else {
+      setHeight("0");
+    }
+  };
+
   return (
     <div>
       <div className="single-article">
-        <AnimateSharedLayout>
-          <Toggle thisSubTitle={thisSubTitle} thisTitle={thisTitle}>
-            <div className="article-content">
-              {contentList.map((contentList, index) => {
-                if (contentList.text) {
-                  return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
-                } else if (contentList.external_content) {
-                  return <Embed url={contentList.external_content} />;
-                } else if (contentList.__component == "image-slider.image-slider") {
-                  return <SlideShow images={contentList.imageslider} />;
-                }
-              })}
-              {singleMedia && injectMedia()}
-              {authorWebsite()}
-            </div>
-            <div className="block"></div>
-          </Toggle>
-        </AnimateSharedLayout>
+        <div className="article-title" onClick={changeHeight}>
+          <h2>{thisTitle}</h2>
+          <h3>{thisSubTitle}</h3>
+        </div>
+        <div id={idDiv} style={style} className="article-content">
+          {contentList.map((contentList, index) => {
+            if (contentList.text) {
+              return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
+            } else if (contentList.external_content) {
+              return <Embed url={contentList.external_content} />;
+            } else if (contentList.__component == "image-slider.image-slider") {
+              return <SlideShow images={contentList.imageslider} />;
+            }
+          })}
+          {singleMedia && injectMedia()}
+          <br />
+          {authorWebsite()}
+        </div>
+        <div className="block"></div>
       </div>
     </div>
   );
