@@ -1,0 +1,91 @@
+.lab-single{
+    width: 90vw;
+    height: 90vh;
+    position: absolute;
+    // overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+
+.lab-wrapper{
+    width: 9000vw;
+    height: 9000vh;
+    transform: translate(495vw);
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.lab-wrapper::-webkit-scrollbar {
+    // display: none;
+  }
+
+.lab-all{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.lab-nav {
+
+    .lab-top{
+        position: fixed;
+        z-index: 100;
+        left: 5vw;
+        width: 90vw;
+        height: 5vh;
+        cursor: pointer;
+    }
+    .lab-right{
+        position: fixed;
+        z-index: 100;
+        right: 0;
+        top: 5vh;
+        width: 5vw;
+        height: 90vh;
+        cursor: pointer;
+    }
+    .lab-bottom{
+        position: fixed;
+        z-index: 100;
+        left: 5vw;
+        bottom: 0;
+        width: 90vw;
+        height: 5vh;
+        cursor: pointer;
+    }
+    .lab-left{
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 5vh;
+        width: 5vw;
+        height: 90vh;
+        cursor: pointer;
+    }
+}
+.wrapp-lab-content::-webkit-scrollbar {
+        display: none;
+      }
+.wrapp-lab-content{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80vw;
+    height: 80vh ;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+   
+
+    .single-article {
+        width: 100%;
+        height: auto;
+    }
+
+}

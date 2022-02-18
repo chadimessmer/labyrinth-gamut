@@ -1,6 +1,3 @@
-
-
-
 @import "./exemple";
 @import "./titleTrace";
 @import "./home";
@@ -19,9 +16,14 @@
 @import "./slideshow";
 @import "./singleComment";
 @import "./chat";
+@import "./answerChat";
+@import "./labyrinth";
+
+
 *{
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 html, body {
@@ -35,6 +37,10 @@ html, body {
 html {
     position: relative;
 }
+
+
+
+
 
 a {
     text-decoration: none;

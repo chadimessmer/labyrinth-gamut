@@ -16,6 +16,8 @@ const Home = () => {
 
   const { trace, articles, chatrooms, vision, visionary } = useSelector((state) => state.traces);
   console.log(trace);
+  document.body.style.overflow = "auto";
+
   return (
     <div className="home">
       <Banner />

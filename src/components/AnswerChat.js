@@ -2,15 +2,18 @@ import "../styles/app.scss";
 import React, { useState } from "react";
 import uuid from "react-uuid";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const AnswerChat = ({ answerTo, chatRoomId, name }) => {
   const [wantReply, setWantReply] = useState(false);
+  const { comment } = useSelector((state) => state.traces);
 
   const formName = uuid();
   function submitNewChat(e) {
+    e.preventDefault();
+
     const url = "https://labyrinthbackend.herokuapp.com/api/chatmessages";
     let submitChat = document.forms.namedItem(formName);
-    e.preventDefault();
     let dataForm = new FormData(submitChat);
     const value = Object.fromEntries(dataForm.entries());
 
@@ -28,8 +31,9 @@ const AnswerChat = ({ answerTo, chatRoomId, name }) => {
     axios
       .post(url, dt)
       .then(function (response) {
-        console.log(response.data);
+        console.log(response.data.data);
         setWantReply(false);
+        comment.push(response.data.data);
         window.location.reload();
       })
       .catch(function (error) {
@@ -52,8 +56,8 @@ const AnswerChat = ({ answerTo, chatRoomId, name }) => {
       </p>
       {wantReply && (
         <form name={formName} onSubmit={submitNewChat}>
-          <input name="name" type="text" placeholder="Name"></input> <br />
-          <textarea name="chat" placeholder="your messsage hier"></textarea> <br />
+          <input required name="name" type="text" placeholder="Name"></input> <br />
+          <textarea required name="chat" placeholder="your messsage hier"></textarea> <br />
           <button type="submit">send</button>
         </form>
       )}

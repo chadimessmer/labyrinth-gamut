@@ -2,6 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import AnswerChat from "./AnswerChat";
 import uuid from "react-uuid";
+import { format, formatDistance } from "date-fns";
 
 const RecursiveContainer = ({ finalComment, chatRoomId }) => {
   let message = finalComment.attributes.chat;
@@ -9,16 +10,27 @@ const RecursiveContainer = ({ finalComment, chatRoomId }) => {
   let children = finalComment.answer;
   let name = finalComment.attributes.name;
   let answerTo = finalComment.id;
-  console.log(answerTo);
+  let dateRaw = finalComment.attributes.publishedAt;
+
+  const current = new Date();
+  console.log(current);
+
+  let newDate = new Date();
+  let dateNow = newDate.getDate();
+  console.log(dateNow);
+  let date = new Date(dateRaw);
+  console.log(date);
+  // formatDistance(date);
 
   const style = {
     paddingLeft: "20px",
   };
 
-  let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  let color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+
   let gradientBeg = "radial-gradient(circle, ";
   let gradentEnd = " 0%, rgba(255,255,255,0) 80%)";
-  let gradient = gradientBeg + "#" + randomColor + gradentEnd;
+  let gradient = gradientBeg + color + gradentEnd;
 
   const avatar = {
     background: gradient,
@@ -29,7 +41,7 @@ const RecursiveContainer = ({ finalComment, chatRoomId }) => {
       <div className="title-avatar">
         <div style={avatar} className="avatar"></div>
         <p>{name}</p>
-        <p>date</p>
+        <p>{formatDistance(date, current)}</p>
       </div>
       <ReactMarkdown key={uuid()}>{message}</ReactMarkdown>
       <AnswerChat name={name} answerTo={answerTo} chatRoomId={chatRoomId} />
