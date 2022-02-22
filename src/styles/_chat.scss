@@ -1,19 +1,19 @@
-.chat-container{
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    color: white;
-    padding: 50px 30px 30px 30px;
+.chat-container {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  color: white;
+  padding: 50px 30px 30px 30px;
 }
 
-.chatroom-page{
-    // position: absolute;
-    height: auto;
-    min-height: 100vh;
-    background-color: black;
+.chatroom-page {
+  // position: absolute;
+  height: auto;
+  min-height: 100vh;
+  background-color: black;
 }
 
-.reply{
-    cursor: pointer;
+.reply {
+  cursor: pointer;
 }

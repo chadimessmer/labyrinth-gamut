@@ -16,7 +16,7 @@ const Vision = () => {
   return (
     <div className="vision-page">
       <div className="vision-wrapper">
-        <Banner subTitle={"Lounge"} />
+        <Banner link={"/lounge"} subTitle={"Lounge"} />
         <div className="vision-content">
           <h2>VISION</h2>
           {vision.attributes !== undefined && <ReactMarkdown className="vision-text">{vision.attributes.content}</ReactMarkdown>}

@@ -37,7 +37,7 @@ const SingleTracePage = ({ children }) => {
 
   return (
     <div layout className="single-page-trace">
-      <Banner subTitle={thisTrace[0] !== undefined && thisTrace[0].attributes.title} />
+      <Banner link={"/"} subTitle={thisTrace[0] !== undefined && thisTrace[0].attributes.title} />
       <div className="content-wrapper">
         <div className="content">
           {thisTrace[0] !== undefined && <h2> Introduction to {thisTrace[0].attributes.title}</h2>}

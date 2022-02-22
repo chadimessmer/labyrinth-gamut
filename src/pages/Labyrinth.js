@@ -2,13 +2,16 @@ import "../styles/app.scss";
 import React, { useEffect, useState } from "react";
 import { loadTraces } from "../actions/tracesAction";
 import { useDispatch, useSelector } from "react-redux";
-import Banner from "../components/Banner";
+import { Link } from "react-router-dom";
 import LabWrapper from "../components/LabWrapper";
 import uuid from "react-uuid";
+import smoothscroll from "smoothscroll-polyfill";
+import { isMobile } from "react-device-detect";
 
 // Components
 
 const Labyrinth = () => {
+  smoothscroll.polyfill();
   const [upExist, setUpExist] = useState(true);
 
   const dispatch = useDispatch();
@@ -16,8 +19,7 @@ const Labyrinth = () => {
     dispatch(loadTraces());
   }, [dispatch]);
 
-  const { articles } = useSelector((state) => state.traces);
-  console.log(articles);
+  const { articles, slide } = useSelector((state) => state.traces);
   let i = articles.length,
     k,
     temp;
@@ -28,17 +30,27 @@ const Labyrinth = () => {
     articles[i] = temp;
   }
 
-  let labyrinth = [[5, 5]];
+  let labyrinth = [[5, 5, 0]];
+  let count = 0;
+
+  let onlyTwo = [[5, 5]];
+
+  let offset = 0;
+  function insertAndShift(arr, from, to) {
+    let cutOut = arr.splice(from, 1)[0]; // cut the element at index 'from'
+    arr.splice(to, 0, cutOut); // insert it at index 'to'
+  }
 
   while (labyrinth.length < articles.length) {
     let labLength = labyrinth.length;
+    count++;
 
     // choisir aléatoirement un endroit du labyrinthe
     let articleRandomPos;
     if (labLength < 1) {
       articleRandomPos = 0;
     } else {
-      articleRandomPos = Math.floor(Math.random() * labLength);
+      articleRandomPos = Math.floor(Math.random() * (labLength - offset) + offset);
     }
     let articleRandom = labyrinth[articleRandomPos];
     //   if (articleRandom[2] < 3) {
@@ -52,6 +64,7 @@ const Labyrinth = () => {
     let newX;
     let newY;
     let newCoordinates;
+    let twoCoordinates;
 
     // si 0 ---> on déplace X de -1 ou 1 et le Y ne change pas et l'inverse si c'est 1
     if (moveXorY === 0) {
@@ -60,18 +73,21 @@ const Labyrinth = () => {
       } else {
         newX = Math.floor(Math.random() * 3) - 1;
       }
-      newCoordinates = [xOther + newX, yOther];
+      newCoordinates = [xOther + newX, yOther, 1];
+      twoCoordinates = [xOther + newX, yOther];
     } else {
       if (yOther === 0) {
         newY = yOther++;
       } else {
         newY = Math.floor(Math.random() * 3) - 1;
       }
-      newCoordinates = [xOther, yOther + newY];
+      newCoordinates = [xOther, yOther + newY, 1];
+      twoCoordinates = [xOther, yOther + newY];
     }
     // fonction pour checker si ces coordonnées existent déjà
     function isArrayInArray(arr, item) {
       var item_as_string = JSON.stringify(item);
+      console.log(item_as_string);
 
       var contains = arr.some(function (ele) {
         return JSON.stringify(ele) === item_as_string;
@@ -80,61 +96,68 @@ const Labyrinth = () => {
     }
 
     // si ça existe déjà on fait rien, on recommence tout depuis le début, autrement on ajoute les nouvelles coordonnées au tableau
-    console.log(isArrayInArray(labyrinth, newCoordinates));
-    if (isArrayInArray(labyrinth, newCoordinates)) {
-      console.log("ca existe deja");
+    if (isArrayInArray(onlyTwo, twoCoordinates)) {
+      // console.log("ca existe deja");
     } else {
-      console.log("nouveau!");
+      // console.log("nouveau!");
       labyrinth.push(newCoordinates);
+      onlyTwo.push(twoCoordinates);
+      articleRandom[2]++;
+      if (articleRandom[2] > 1) {
+        insertAndShift(labyrinth, articleRandomPos, 0);
+        offset++;
+      }
     }
     //   }
   }
 
-  console.log(labyrinth);
   for (let i = 0; i < articles.length; i++) {
     let thisArticle = articles[i];
     thisArticle["xy"] = labyrinth[i];
+    thisArticle["color"] = Math.random() * 360;
   }
-  let largeur = parseInt(window.innerWidth) * 9.45;
-  let hauteur = parseInt(window.innerHeight) * 4.5;
-  console.log(largeur);
-  console.log(hauteur);
-  window.scrollTo(largeur, hauteur);
+  let largeur = parseInt(window.innerWidth) * 10;
+  let hauteur = parseInt(window.innerHeight) * 5;
 
+  window.addEventListener("load", function () {
+    window.scroll(largeur, hauteur + hauteur * 0.00999);
+  });
   let initialPos = [5, 5];
   let nextPos = initialPos;
 
+  let upDown = 0;
+
   const scrollUp = () => {
     nextPos[1]--;
+    upDown++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
-    console.log(includes);
     if (includes) {
-      hauteur = hauteur - parseInt(window.innerHeight) * 0.9;
-      window.scrollTo(largeur, hauteur);
+      hauteur = hauteur - parseInt(window.innerHeight);
+      window.scroll(largeur, hauteur + hauteur * 0.00999);
     } else {
+      upDown--;
       nextPos[1]++;
     }
-    console.log(nextPos);
   };
   const scrollDown = () => {
     nextPos[1]++;
+    upDown++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
-    console.log(includes);
     if (includes) {
-      hauteur = hauteur + parseInt(window.innerHeight) * 0.9;
-      window.scrollTo(largeur, hauteur);
+      hauteur = hauteur + parseInt(window.innerHeight);
+      window.scroll(largeur, hauteur + hauteur * 0.00999);
     } else {
+      upDown--;
       nextPos[1]--;
     }
-    console.log(nextPos);
   };
 
   const scrollLeft = () => {
     nextPos[0]--;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      largeur = largeur - parseInt(window.innerWidth) * 0.9;
-      window.scrollTo(largeur, hauteur);
+      largeur = largeur - parseInt(window.innerWidth);
+      window.scroll(largeur, hauteur + hauteur * 0.00999);
     } else {
       nextPos[0]++;
     }
@@ -144,18 +167,36 @@ const Labyrinth = () => {
     nextPos[0]++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      largeur = largeur + parseInt(window.innerWidth) * 0.9;
-      window.scrollTo(largeur, hauteur);
+      largeur = largeur + parseInt(window.innerWidth);
+      window.scroll(largeur, hauteur + hauteur * 0.00999);
     } else {
       nextPos[0]--;
     }
   };
 
-  const checkUp = () => {};
+  let resizeTimer;
+
+  if (!isMobile) {
+    window.addEventListener("resize", function (e) {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        // Run code here, resizing has "stopped"
+        window.location.reload(false);
+      }, 250);
+    });
+  }
+
+  let allArticles = articles;
 
   document.body.style.overflow = "hidden";
+
   return (
     <div className="lab-all">
+      <div className="banner-container-lab">
+        <div>
+          <Link to={"/"}>LABYRINTH</Link>
+        </div>
+      </div>
       <div className="lab-nav">
         <div onClick={scrollUp} className="lab-top"></div>
         <div onClick={scrollLeft} className="lab-left"></div>
@@ -164,7 +205,7 @@ const Labyrinth = () => {
       </div>
       <div className="lab-wrapper">
         {articles.map((articles, index) => (
-          <LabWrapper article={articles} key={uuid()} />
+          <LabWrapper article={articles} slide={slide} articles={allArticles} title={articles.id} key={uuid()} />
         ))}
       </div>
     </div>

@@ -10,6 +10,7 @@
     "framer-motion": "^6.2.4",
     "react": "^17.0.2",
     "react-audio-player": "^0.17.0",
+    "react-device-detect": "^2.1.2",
     "react-dom": "^17.0.2",
     "react-embed": "^3.3.3",
     "react-pdf": "^5.7.1",
@@ -17,6 +18,7 @@
     "react-slideshow-image": "^3.7.0",
     "react-uuid": "^1.0.2",
     "rich-markdown-editor": "^11.21.3",
+    "smoothscroll-polyfill": "^0.4.4",
     "video-react": "^0.15.0",
     "web-vitals": "^2.1.4"
   },

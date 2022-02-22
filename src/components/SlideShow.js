@@ -5,11 +5,9 @@ import "react-slideshow-image/dist/styles.css";
 const slideImages = [];
 
 const SlideShow = ({ images }) => {
-  console.log(images);
   let allImages = images.data;
 
   for (let image of allImages) {
-    console.log(image);
     slideImages.push(image.attributes.url);
   }
   //   const carousel = () => {};

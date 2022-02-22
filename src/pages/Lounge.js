@@ -8,7 +8,7 @@ import Banner from "../components/Banner";
 const Lounge = () => {
   return (
     <div className="lounge">
-      <Banner subTitle={"Lounge"} />
+      <Banner link={"/"} subTitle={"Lounge"} />
       <div className="visions">
         <Link to="/vision">
           <div className="vision">

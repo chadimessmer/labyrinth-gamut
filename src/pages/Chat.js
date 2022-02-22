@@ -77,7 +77,7 @@ const Chat = () => {
 
   return (
     <div className="chatroom-page">
-      <Banner subTitle={"Lounge"} />
+      <Banner link={"/chatroom"} subTitle={"Lounge"} />
       <div className="chat-container">
         {thisChatRoom[0] !== undefined && <h2>{thisChatRoom[0].attributes.title}</h2>}
         {thisChatRoom[0] !== undefined && <p>{thisChatRoom[0].attributes.introduction}</p>}

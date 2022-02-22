@@ -16,7 +16,7 @@ const Support = () => {
   return (
     <div className="support-page">
       <div className="support-wrapper">
-        <Banner subTitle={"Lounge"} />
+        <Banner link={"/lounge"} subTitle={"Lounge"} />
         <div className="support-content">
           <h2>SUPPORT</h2>
           {support.attributes !== undefined && <ReactMarkdown className="support-text">{support.attributes.text}</ReactMarkdown>}

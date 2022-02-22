@@ -20,7 +20,7 @@ const Chatroom = () => {
   return (
     <div className="chatroom-page">
       <div className="chatroom-wrapper">
-        <Banner subTitle={"Lounge"} />
+        <Banner link={"/lounge"} subTitle={"Lounge"} />
         <div className="chatroom-content">
           <h2>Chatroom</h2>
           <div>

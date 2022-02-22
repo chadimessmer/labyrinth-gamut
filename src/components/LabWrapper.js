@@ -8,7 +8,7 @@ import SlideShow from "./SlideShow";
 import ReactMarkdown from "react-markdown";
 import uuid from "react-uuid";
 
-const LabWrapper = ({ article }) => {
+const LabWrapper = ({ articles, article, slide, title }) => {
   let offsetLarge;
   let offsetHauteur;
   let pos = article.xy;
@@ -18,17 +18,100 @@ const LabWrapper = ({ article }) => {
   let endGrad = "10%, rgba(255,255,255,0) 40%)";
   let finalColor = beginGrad + color + endGrad;
 
+  let thisPopulatedArticle = slide.filter((obj) => {
+    return obj.id === title;
+  });
+
+  // couleur gauche
+  let articleLeftOne = articles.filter((obj) => {
+    return obj.xy[0] === article.xy[0] - 1;
+  });
+  let articleLeft = articleLeftOne.filter((obj) => {
+    return obj.xy[1] === article.xy[1];
+  });
+
+  let colorLeft;
+
+  if (articleLeft[0]) {
+    let colorFull = articleLeft[0].color;
+    let intermediateColor = Math.abs(colorFull + article.color - 360);
+    console.log(intermediateColor);
+
+    colorLeft = "hsl(" + intermediateColor + ", 100%, 50%)";
+  } else {
+    colorLeft = "hsl(0, 100%, 100%)";
+  }
+
+  // couleur droite
+
+  let articleRightOne = articles.filter((obj) => {
+    return obj.xy[0] === article.xy[0] + 1;
+  });
+  let articleRight = articleRightOne.filter((obj) => {
+    return obj.xy[1] === article.xy[1];
+  });
+
+  let colorRight;
+
+  if (articleRight[0]) {
+    let colorFull = articleRight[0].color;
+    let intermediateColor = Math.abs(colorFull + article.color - 360);
+
+    colorRight = "hsl(" + intermediateColor + ", 100%, 50%)";
+  } else {
+    colorRight = "hsl(0, 100%, 100%)";
+  }
+
+  // couleur haut
+
+  let articleTopOne = articles.filter((obj) => {
+    return obj.xy[0] === article.xy[0];
+  });
+  let articleTop = articleTopOne.filter((obj) => {
+    return obj.xy[1] === article.xy[1] - 1;
+  });
+
+  let colorTop;
+
+  if (articleTop[0]) {
+    let colorFull = articleTop[0].color;
+    let intermediateColor = (colorFull + article.color) / 2;
+
+    colorTop = "hsl(" + intermediateColor + ", 100%, 50%)";
+  } else {
+    colorTop = "hsl(0, 100%, 100%)";
+  }
+
+  // couleur bas
+  let articleBottompOne = articles.filter((obj) => {
+    return obj.xy[0] === article.xy[0];
+  });
+  let articleBottom = articleBottompOne.filter((obj) => {
+    return obj.xy[1] === article.xy[1] + 1;
+  });
+
+  let colorBottom;
+
+  if (articleBottom[0]) {
+    let colorFull = articleBottom[0].color;
+    let intermediateColor = (colorFull + article.color) / 2;
+
+    colorBottom = "hsl(" + intermediateColor + ", 100%, 50%)";
+  } else {
+    colorBottom = "hsl(0, 100%, 100%)";
+  }
+
   const calculatePosition = () => {
     let largeur = parseInt(window.innerWidth);
     let hauteur = parseInt(window.innerHeight);
 
     let largeurZero = (largeur / 100) * 5;
     let largeurNegative = (largeur / 100) * 95;
-    let largeurPositive = (largeur / 100) * 95;
+    let largeurPositive = (largeur / 100) * 105;
 
     let hauteurZero = (hauteur / 100) * 5;
-    let hauteurNegative = (hauteur / 100) * 95;
-    let hauteurPositive = (hauteur / 100) * 95;
+    let hauteurNegative = (hauteur / 100) * 100;
+    let hauteurPositive = (hauteur / 100) * 105;
 
     if (pos[0] === 0) {
       offsetLarge = largeurZero + "px";
@@ -47,15 +130,34 @@ const LabWrapper = ({ article }) => {
     } else {
       offsetHauteur = pos[1] * (hauteurPositive + hauteurZero) + "px";
     }
-    console.log("je calcul");
 
     style = {
       position: "absolute",
       top: offsetHauteur,
       left: offsetLarge,
-
-      background: color,
     };
+  };
+
+  let thisColor = "hsl(" + article.color + ", 100%, 50%)";
+
+  let styleCenter = {
+    backgroundColor: thisColor,
+  };
+
+  let styleLeft = {
+    backgroundImage: "linear-gradient(to left," + thisColor + ", " + colorLeft + ")",
+  };
+
+  let styleTop = {
+    backgroundImage: "linear-gradient(" + colorTop + ", " + thisColor + ")",
+  };
+
+  let styleBottom = {
+    backgroundImage: "linear-gradient(" + thisColor + " ," + colorBottom + ")",
+  };
+
+  let styleRight = {
+    backgroundImage: "linear-gradient(to right," + thisColor + ", " + colorRight + ")",
   };
 
   if (pos) {
@@ -76,7 +178,7 @@ const LabWrapper = ({ article }) => {
   let thisTitle = article.attributes.title;
   let thisSubTitle = article.attributes.subtitle;
   let thisAuthor = article.attributes.author;
-  let contentList = article.attributes.type;
+  let contentList = thisPopulatedArticle[0].attributes.type;
   let singleMedia = article.attributes.single_media;
   let authorWeb = article.attributes.website;
 
@@ -133,24 +235,42 @@ const LabWrapper = ({ article }) => {
 
   return (
     <div style={style} className="lab-single">
-      <div className="wrapp-lab-content">
-        <div className="single-article">
-          <div className="article-title">
-            <h2>{thisTitle}</h2>
-            <h3>{thisSubTitle}</h3>
+      <div className="lab-relative">
+        <div className="background-lab">
+          <div class="container">
+            <div class="container-top">
+              <div style={styleTop} class="top"></div>
+            </div>
+            <div class="container-center">
+              <div style={styleLeft} class="left"></div>
+              <div style={styleCenter} class="center-div"></div>
+              <div style={styleRight} class="right"></div>
+            </div>
+            <div class="container-bottom">
+              <div style={styleBottom} class="bottom"></div>
+            </div>
           </div>
-          <div className="article-content">
-            {contentList.map((contentList, index) => {
-              if (contentList.text) {
-                return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
-              } else if (contentList.external_content) {
-                return <Embed url={contentList.external_content} />;
-              } else if (contentList.__component === "image-slider.image-slider") {
-              }
-            })}
-            {singleMedia && injectMedia()}
-            <br />
-            {authorWebsite()}
+        </div>
+        <div className="wrapp-lab-content">
+          <div className="single-article">
+            <div className="article-title">
+              <h2>{thisTitle}</h2>
+              <h3>{thisSubTitle}</h3>
+            </div>
+            <div className="article-content">
+              {contentList.map((contentList, index) => {
+                if (contentList.text) {
+                  return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
+                } else if (contentList.external_content) {
+                  return <Embed url={contentList.external_content} />;
+                } else if (contentList.__component == "image-slider.image-slider") {
+                  return <SlideShow images={contentList.imageslider} />;
+                }
+              })}
+              {singleMedia && injectMedia()}
+              <br />
+              {authorWebsite()}
+            </div>
           </div>
         </div>
       </div>

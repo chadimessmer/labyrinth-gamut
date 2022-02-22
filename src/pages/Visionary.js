@@ -16,7 +16,7 @@ const Visionary = () => {
   return (
     <div className="visionary-page">
       <div className="visionary-wrapper">
-        <Banner subTitle={"Lounge"} />
+        <Banner link={"/lounge"} subTitle={"Lounge"} />
         <div className="visionary-content">
           <h2>VISIONARY</h2>
           {visionary.attributes !== undefined && <ReactMarkdown className="visionary-text">{visionary.attributes.content}</ReactMarkdown>}

@@ -18,9 +18,10 @@ const Home = () => {
   console.log(trace);
   document.body.style.overflow = "auto";
 
+  let lien = "/";
   return (
     <div className="home">
-      <Banner />
+      <Banner link={lien} />
       <div className="home-links-container">
         <Link to="labyrinth">
           <div key={uuid()} className="title-box">

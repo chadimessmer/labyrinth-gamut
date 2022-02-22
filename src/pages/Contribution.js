@@ -64,7 +64,7 @@ const Contribution = () => {
   return (
     <div>
       <div className="contribute-wrapper">
-        <Banner subTitle={"Contribution"} />
+        <Banner link={"/lounge"} subTitle={"Contribution"} />
         <div className="contribution-container">
           {contribute()}
           {continueContribute && <ContributeOption thisTrace={thisTrace} />}
