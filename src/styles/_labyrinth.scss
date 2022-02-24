@@ -35,6 +35,8 @@
 }
 
 .lab-all {
+  margin: 0;
+  padding: 0;
   // -ms-overflow-style: none;  /* IE and Edge */
   // scrollbar-width: none;  /* Firefox */
 }
@@ -99,7 +101,45 @@
 
   .single-article {
     width: 100%;
+    max-width: 700px;
     height: auto;
+    padding-top: 60px;
+
+    .article-content {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 30px;
+      height: auto;
+
+      p {
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  img {
+    width: 100%;
+    height: auto;
+    margin: 40px 0px 40px 0px;
+  }
+
+  .article-title {
+    padding-top: 35px;
+  }
+  h2 {
+    cursor: auto;
   }
 }
 
@@ -117,13 +157,14 @@
   width: 100vw;
   height: 100vh;
   display: block;
-  filter: blur(40px);
+  filter: blur(30px);
   margin: -1px;
 }
 
 .container-top {
   width: 100vw;
   height: 10vh;
+  // filter: blur(30px);
 }
 
 .top {
@@ -141,7 +182,7 @@
   margin-top: -10vh;
   width: 10vw;
   height: 100vh;
-  clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%);
 }
 .center-div {
   margin-top: -90vh;
@@ -150,13 +191,15 @@
   height: 80vh;
 }
 
+.lab-right {
+}
+
 .right {
   margin-top: -90vh;
   margin-left: 90vw;
   width: 10vw;
   height: 100vh;
-  background-image: linear-gradient(to left, yellow, red);
-  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%);
+  clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
 }
 
 .container-bottom {
@@ -168,5 +211,5 @@
   width: 100vw;
   height: 15vh;
   margin-top: 5vh;
-  clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+  clip-path: polygon(7.5% 0, 92.5% 0, 100% 100%, 0 100%);
 }

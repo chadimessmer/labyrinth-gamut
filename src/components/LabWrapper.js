@@ -32,14 +32,17 @@ const LabWrapper = ({ articles, article, slide, title }) => {
 
   let colorLeft;
 
+  let displayLeft;
   if (articleLeft[0]) {
     let colorFull = articleLeft[0].color;
     let intermediateColor = Math.abs(colorFull + article.color - 360);
     console.log(intermediateColor);
 
     colorLeft = "hsl(" + intermediateColor + ", 100%, 50%)";
+    displayLeft = "visible";
   } else {
     colorLeft = "hsl(0, 100%, 100%)";
+    displayLeft = "hidden";
   }
 
   // couleur droite
@@ -52,14 +55,17 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   });
 
   let colorRight;
+  let displayRight;
 
   if (articleRight[0]) {
     let colorFull = articleRight[0].color;
     let intermediateColor = Math.abs(colorFull + article.color - 360);
 
+    displayRight = "visible";
     colorRight = "hsl(" + intermediateColor + ", 100%, 50%)";
   } else {
     colorRight = "hsl(0, 100%, 100%)";
+    displayRight = "hidden";
   }
 
   // couleur haut
@@ -72,14 +78,17 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   });
 
   let colorTop;
+  let displayTop;
 
   if (articleTop[0]) {
     let colorFull = articleTop[0].color;
     let intermediateColor = (colorFull + article.color) / 2;
 
+    displayTop = "visible";
     colorTop = "hsl(" + intermediateColor + ", 100%, 50%)";
   } else {
     colorTop = "hsl(0, 100%, 100%)";
+    displayTop = "hidden";
   }
 
   // couleur bas
@@ -92,13 +101,15 @@ const LabWrapper = ({ articles, article, slide, title }) => {
 
   let colorBottom;
 
+  let displayBottom;
   if (articleBottom[0]) {
     let colorFull = articleBottom[0].color;
     let intermediateColor = (colorFull + article.color) / 2;
-
+    displayBottom = "visible";
     colorBottom = "hsl(" + intermediateColor + ", 100%, 50%)";
   } else {
     colorBottom = "hsl(0, 100%, 100%)";
+    displayBottom = "hidden";
   }
 
   const calculatePosition = () => {
@@ -146,18 +157,22 @@ const LabWrapper = ({ articles, article, slide, title }) => {
 
   let styleLeft = {
     backgroundImage: "linear-gradient(to left," + thisColor + ", " + colorLeft + ")",
+    visibility: displayLeft,
   };
 
   let styleTop = {
     backgroundImage: "linear-gradient(" + colorTop + ", " + thisColor + ")",
+    visibility: displayTop,
   };
 
   let styleBottom = {
     backgroundImage: "linear-gradient(" + thisColor + " ," + colorBottom + ")",
+    visibility: displayBottom,
   };
 
   let styleRight = {
     backgroundImage: "linear-gradient(to right," + thisColor + ", " + colorRight + ")",
+    visibility: displayRight,
   };
 
   if (pos) {

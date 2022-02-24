@@ -9,9 +9,9 @@ import smoothscroll from "smoothscroll-polyfill";
 import { isMobile } from "react-device-detect";
 
 // Components
+smoothscroll.polyfill();
 
 const Labyrinth = () => {
-  smoothscroll.polyfill();
   const [upExist, setUpExist] = useState(true);
 
   const dispatch = useDispatch();
@@ -118,10 +118,10 @@ const Labyrinth = () => {
   }
   let largeur = parseInt(window.innerWidth) * 10;
   let hauteur = parseInt(window.innerHeight) * 5;
+  let hauteurScroll = parseInt(window.innerHeight);
+  console.log(window.innerHeight);
 
-  window.addEventListener("load", function () {
-    window.scroll(largeur, hauteur + hauteur * 0.00999);
-  });
+  window.scroll(largeur, hauteur + hauteur * 0.00999);
   let initialPos = [5, 5];
   let nextPos = initialPos;
 
@@ -132,8 +132,8 @@ const Labyrinth = () => {
     upDown++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      hauteur = hauteur - parseInt(window.innerHeight);
-      window.scroll(largeur, hauteur + hauteur * 0.00999);
+      hauteur = window.innerHeight * nextPos[1] + hauteurScroll / 20;
+      window.scroll(largeur, hauteur);
     } else {
       upDown--;
       nextPos[1]++;
@@ -144,8 +144,8 @@ const Labyrinth = () => {
     upDown++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      hauteur = hauteur + parseInt(window.innerHeight);
-      window.scroll(largeur, hauteur + hauteur * 0.00999);
+      hauteur = window.innerHeight * nextPos[1] + hauteurScroll / 20;
+      window.scroll(largeur, hauteur);
     } else {
       upDown--;
       nextPos[1]--;
@@ -157,7 +157,7 @@ const Labyrinth = () => {
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
       largeur = largeur - parseInt(window.innerWidth);
-      window.scroll(largeur, hauteur + hauteur * 0.00999);
+      window.scroll(largeur, hauteur);
     } else {
       nextPos[0]++;
     }
@@ -168,7 +168,7 @@ const Labyrinth = () => {
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
       largeur = largeur + parseInt(window.innerWidth);
-      window.scroll(largeur, hauteur + hauteur * 0.00999);
+      window.scroll(largeur, hauteur);
     } else {
       nextPos[0]--;
     }

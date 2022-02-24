@@ -17,6 +17,9 @@ const Home = () => {
   const { trace, articles, chatrooms, vision, visionary } = useSelector((state) => state.traces);
   console.log(trace);
   document.body.style.overflow = "auto";
+  trace.sort((a, b) => {
+    return a.id - b.id; //this will sort according to .id descending
+  });
 
   let lien = "/";
   return (
@@ -24,23 +27,35 @@ const Home = () => {
       <Banner link={lien} />
       <div className="home-links-container">
         <Link to="labyrinth">
-          <div key={uuid()} className="title-box">
-            <div className="title-box-background"></div>
-            <h3 className="title-intro">Enter</h3>
+          <div className="enter-container">
+            <div key={uuid()} className="title-box-enter">
+              <div className="enter-box-background">
+                <div className="back-one"></div>
+                <div className="back-two"></div>
+                <div className="back-three"></div>
+                <div className="back-four"></div>
+              </div>
+              <h3 className="title-intro">Enter</h3>
+            </div>
           </div>
         </Link>
 
-        {trace.map((trace) => (
+        {trace.map((trace, index) => (
           <Link key={uuid()} to={"/trace/" + trace.id}>
-            <Trace title={trace.attributes.title} />
+            <Trace index={index} title={trace.attributes.title} />
           </Link>
         ))}
         <Link to="/lounge">
-          <div className="title-box">
-            <div className="title-box-background"></div>
-            <h3 className="title-intro">Lounge</h3>
+          <div className="lounge-container">
+            <div className="title-box">
+              <div className="title-box-background lounge-intro"></div>
+              <h3 className="title-intro lounge-text">Lounge</h3>
+            </div>
           </div>
         </Link>
+      </div>
+      <div className="newsletter">
+        <a href="#">NEWSLETTER</a>
       </div>
     </div>
   );

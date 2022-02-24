@@ -1,10 +1,10 @@
-.home{
-    .home-title{
-        text-align: center;
-    }
-    .home-links-container{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    
+.home {
+  .home-title {
+    text-align: center;
+  }
+}
+.newsletter {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
 }

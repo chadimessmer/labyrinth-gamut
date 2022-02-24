@@ -58,13 +58,14 @@ const Contribution = () => {
   };
 
   console.log(thisTrace);
+  let link = "/trace/" + thisTrace[0].id;
 
   // console.log(locationId);
 
   return (
     <div>
       <div className="contribute-wrapper">
-        <Banner link={"/lounge"} subTitle={"Contribution"} />
+        <Banner link={link} subTitle={"Contribution"} />
         <div className="contribution-container">
           {contribute()}
           {continueContribute && <ContributeOption thisTrace={thisTrace} />}

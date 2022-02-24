@@ -14,7 +14,7 @@ import Embed from "react-embed";
 import SlideShow from "./SlideShow";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-const SingleArticle = ({ title, slide }) => {
+const SingleArticle = ({ title, slide, index, colorBackground }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [height, setHeight] = useState("0");
@@ -67,6 +67,15 @@ const SingleArticle = ({ title, slide }) => {
     }
   };
 
+  let colorBegin = "hsl(" + colorBackground[index + 1] + ", 100%, 50%)";
+  let colorEnd = "hsl(" + colorBackground[index + 2] + ", 100%, 50%)";
+  let thisColor = "linear-gradient(0deg, " + colorEnd + " 0%, " + colorBegin + " 100%)";
+  console.log(thisColor);
+
+  const styleBackground = {
+    backgroundImage: "linear-gradient(" + colorBegin + " ," + colorEnd + ")",
+  };
+
   const authorWebsite = () => {
     if (authorWeb) {
       return (
@@ -108,27 +117,31 @@ const SingleArticle = ({ title, slide }) => {
   };
 
   return (
-    <div>
-      <div className="single-article">
-        <div className="article-title" onClick={changeHeight}>
-          <h2>{thisTitle}</h2>
-          <h3>{thisSubTitle}</h3>
+    <div className="single-container">
+      <div style={styleBackground} className="transition"></div>
+
+      <div className="single-box">
+        <div className="single-article">
+          <div className="article-title" onClick={changeHeight}>
+            <h2>{thisTitle}</h2>
+            <h3>{thisSubTitle}</h3>
+          </div>
+          <div id={idDiv} style={style} className="article-content">
+            {contentList.map((contentList, index) => {
+              if (contentList.text) {
+                return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
+              } else if (contentList.external_content) {
+                return <Embed url={contentList.external_content} />;
+              } else if (contentList.__component == "image-slider.image-slider") {
+                return <SlideShow images={contentList.imageslider} />;
+              }
+            })}
+            {singleMedia && injectMedia()}
+            <br />
+            {authorWebsite()}
+          </div>
+          <div className="block"></div>
         </div>
-        <div id={idDiv} style={style} className="article-content">
-          {contentList.map((contentList, index) => {
-            if (contentList.text) {
-              return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
-            } else if (contentList.external_content) {
-              return <Embed url={contentList.external_content} />;
-            } else if (contentList.__component == "image-slider.image-slider") {
-              return <SlideShow images={contentList.imageslider} />;
-            }
-          })}
-          {singleMedia && injectMedia()}
-          <br />
-          {authorWebsite()}
-        </div>
-        <div className="block"></div>
       </div>
     </div>
   );
