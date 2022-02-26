@@ -31,36 +31,25 @@
     top: 25px;
   }
 }
-.lounge-container {
-  position: fixed;
-  right: 2vw;
-  top: 45vh;
-  width: 27vw;
-  height: 28vh;
-}
 
-.enter-container {
+.trace {
+  width: 26.2vw;
+  height: 26vh;
   position: fixed;
-  top: 20vh;
+  margin-left: -1.5vw;
 }
 
 .trace1 {
-  width: 27vw;
-  height: 28vh;
-  position: fixed;
-  bottom: 0;
-  left: 54vw;
+  bottom: 50vh;
+  left: 75vw;
   .title-box-background {
     background-color: #ffe522;
     border-radius: 50px;
   }
 }
 .trace2 {
-  width: 26vw;
-  height: 28vh;
-  position: fixed;
-  top: 45vh;
-  left: 27vw;
+  bottom: 0;
+  left: 25vw;
 
   .title-box-background {
     background-color: #fe6347;
@@ -69,11 +58,8 @@
 }
 
 .trace3 {
-  width: 26vw;
-  height: 25vh;
-  position: fixed;
   bottom: 0;
-  left: 27vw;
+  left: 50vw;
   .title-box-background {
     background-color: #89fa94;
     border-radius: 50px;
@@ -85,11 +71,8 @@
   }
 }
 .trace4 {
-  width: 26vw;
-  height: 25vh;
-  position: fixed;
-  bottom: 50vh;
-  left: 47vw;
+  bottom: 0;
+  left: 75vw;
   .title-box-background {
     background-color: #d80ffc;
     border-radius: 50px;
@@ -101,10 +84,117 @@
   }
 }
 
+.trace5 {
+  top: -2vh;
+  right: 4vw;
+  .title-box-background {
+    background-color: #269ca0;
+    border-radius: 50px;
+  }
+  .title-intro {
+    rotate: -90deg;
+    left: 10px;
+    top: 25px;
+  }
+}
+
+.trace6 {
+  bottom: 0;
+  left: 0vw;
+  .title-box-background {
+    background-color: #95f11c;
+    border-radius: 50px;
+  }
+  .title-intro {
+    // rotate: -90deg;
+    // left: 10px;
+    // top: 25px;
+  }
+}
+
+.trace7 {
+  top: -2vh;
+  left: 23vw;
+
+  .title-box-background {
+    background-color: #1fc075;
+    border-radius: 50px;
+  }
+}
+
+.lay1 {
+  left: 0;
+  bottom: 25vh;
+}
+.lay2 {
+  left: 0;
+  bottom: 0;
+}
+
+.lay3 {
+  left: 25vw;
+  bottom: 75vh;
+}
+.lay4 {
+  left: 25vw;
+  bottom: 50vh;
+}
+.lay5 {
+  left: 25vw;
+  bottom: 25vh;
+}
+.lay6 {
+  left: 25vw;
+  bottom: 0;
+}
+
+.lay7 {
+  left: 50vw;
+  bottom: 75vh;
+}
+
+.lay8 {
+  left: 50vw;
+  bottom: 50vh;
+}
+.lay9 {
+  left: 50vw;
+  bottom: 25vh;
+}
+
+.lay10 {
+  left: 50vw;
+  bottom: 0vh;
+}
+
+.lay11 {
+  left: 75vw;
+  bottom: 75vh;
+}
+.lay12 {
+  left: 75vw;
+  bottom: 50vh;
+}
+
+.lay13 {
+  left: 75vw;
+  bottom: 0vh;
+}
+
+.lay14 {
+  left: 0vw;
+  bottom: 50vh;
+}
+
+.lay15 {
+  left: 75vw;
+  bottom: 25vh;
+}
+
 .title-box-enter {
-  margin-left: -30px;
-  width: 30vw;
-  height: 30vh;
+  margin-left: -1vw;
+  width: 26vw;
+  height: 26vh;
   position: relative;
   .title-intro {
     margin-left: 50px;
@@ -113,7 +203,7 @@
   }
 
   .enter-box-background {
-    filter: blur(25px);
+    filter: blur(30px);
     -webkit-filter: blur(30px);
     width: 100%;
     height: 100%;

@@ -66,9 +66,11 @@ const SubmitVideo = ({ thisTrace }) => {
             <input required name="file" id="file" type="file" accept="video/*"></input> <br />
             <label htmlFor="website">Link</label> <br />
             <input type="link" name="website" id="website"></input>
-            <button type="submit" className="contribute-button">
-              Continue
-            </button>
+            <div className="button-div">
+              <button type="submit" className="contribute-button">
+                Continue
+              </button>
+            </div>
           </form>
         </div>
       )}

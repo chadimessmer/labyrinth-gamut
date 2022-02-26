@@ -25,7 +25,7 @@
   height: 100%;
   z-index: 1;
   // background-color: linear-gradient(hsl(266.0382184483328, 100%, 50%) 100%);
-  filter: blur(5x);
+  filter: blur(0px);
 }
 
 .single-box {
@@ -53,6 +53,7 @@
     p {
       margin-top: 30px;
       margin-bottom: 30px;
+      text-align: left;
 
       img {
         width: 100%;

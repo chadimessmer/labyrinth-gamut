@@ -14,10 +14,10 @@ import Embed from "react-embed";
 import SlideShow from "./SlideShow";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-const SingleArticle = ({ title, slide, index, colorBackground }) => {
+const SingleArticle = ({ title, slide, index, colorBackground, articlesLength }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [height, setHeight] = useState("0");
+  const [height, setHeight] = useState("1");
   let incrementCounter = () => setPageNumber(pageNumber + 1);
   let decrementCounter = () => setPageNumber(pageNumber - 1);
 
@@ -30,6 +30,10 @@ const SingleArticle = ({ title, slide, index, colorBackground }) => {
   });
   var thisPopulatedArticle = slide.filter((obj) => {
     return obj.id === title.id;
+  });
+
+  thisPopulatedArticle.sort((a, b) => {
+    return a.id - b.id; //this will sort according to .id descending
   });
 
   let articleId = thisSingleArticle[0].id;
@@ -58,7 +62,7 @@ const SingleArticle = ({ title, slide, index, colorBackground }) => {
             <Document file={singleMedia.data.attributes.url} onLoadSuccess={onDocumentLoadSuccess}>
               <Page pageNumber={pageNumber} />
             </Document>
-            <p>
+            <p className="nav-pdf">
               <span onClick={prev}> prev </span> {pageNumber} of {numPages} <span onClick={next}> next </span>
             </p>
           </div>
@@ -67,9 +71,16 @@ const SingleArticle = ({ title, slide, index, colorBackground }) => {
     }
   };
 
-  let colorBegin = "hsl(" + colorBackground[index + 1] + ", 100%, 50%)";
-  let colorEnd = "hsl(" + colorBackground[index + 2] + ", 100%, 50%)";
-  let thisColor = "linear-gradient(0deg, " + colorEnd + " 0%, " + colorBegin + " 100%)";
+  const colorBegin = "hsl(" + colorBackground[index + 1] + ", 100%, 70%)";
+  let colorEnd;
+  if (articlesLength !== index + 1) {
+    colorEnd = "hsl(" + colorBackground[index + 2] + ", 100%, 70%)";
+  } else {
+    colorEnd = "hsl(" + colorBackground[1] + ", 100%, 70%)";
+  }
+  console.log(index);
+  console.log(articlesLength);
+  const thisColor = "linear-gradient(0deg, " + colorEnd + " 0%, " + colorBegin + " 100%)";
   console.log(thisColor);
 
   const styleBackground = {
@@ -116,6 +127,8 @@ const SingleArticle = ({ title, slide, index, colorBackground }) => {
     }
   };
 
+  console.log(contentList);
+
   return (
     <div className="single-container">
       <div style={styleBackground} className="transition"></div>
@@ -126,12 +139,12 @@ const SingleArticle = ({ title, slide, index, colorBackground }) => {
             <h2>{thisTitle}</h2>
             <h3>{thisSubTitle}</h3>
           </div>
-          <div id={idDiv} style={style} className="article-content">
+          <div key={uuid()} id={idDiv} style={style} className="article-content">
             {contentList.map((contentList, index) => {
               if (contentList.text) {
                 return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
               } else if (contentList.external_content) {
-                return <Embed url={contentList.external_content} />;
+                return <Embed key={uuid()} url={contentList.external_content} />;
               } else if (contentList.__component == "image-slider.image-slider") {
                 return <SlideShow images={contentList.imageslider} />;
               }
@@ -140,7 +153,7 @@ const SingleArticle = ({ title, slide, index, colorBackground }) => {
             <br />
             {authorWebsite()}
           </div>
-          <div className="block"></div>
+          {/* <div className="block"></div> */}
         </div>
       </div>
     </div>

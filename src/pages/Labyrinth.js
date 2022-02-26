@@ -1,5 +1,5 @@
 import "../styles/app.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { loadTraces } from "../actions/tracesAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -12,6 +12,11 @@ import { isMobile } from "react-device-detect";
 smoothscroll.polyfill();
 
 const Labyrinth = () => {
+  const lab = useRef(null);
+  useEffect(() => {
+    // console.log(lab.current);
+  });
+
   const [upExist, setUpExist] = useState(true);
 
   const dispatch = useDispatch();
@@ -87,7 +92,7 @@ const Labyrinth = () => {
     // fonction pour checker si ces coordonnées existent déjà
     function isArrayInArray(arr, item) {
       var item_as_string = JSON.stringify(item);
-      console.log(item_as_string);
+      // console.log(item_as_string);
 
       var contains = arr.some(function (ele) {
         return JSON.stringify(ele) === item_as_string;
@@ -103,7 +108,7 @@ const Labyrinth = () => {
       labyrinth.push(newCoordinates);
       onlyTwo.push(twoCoordinates);
       articleRandom[2]++;
-      if (articleRandom[2] > 1) {
+      if (articleRandom[2] > 1 || articleRandom[1] < 3 || articleRandom[0] < 3) {
         insertAndShift(labyrinth, articleRandomPos, 0);
         offset++;
       }
@@ -116,12 +121,11 @@ const Labyrinth = () => {
     thisArticle["xy"] = labyrinth[i];
     thisArticle["color"] = Math.random() * 360;
   }
-  let largeur = parseInt(window.innerWidth) * 10;
-  let hauteur = parseInt(window.innerHeight) * 5;
   let hauteurScroll = parseInt(window.innerHeight);
-  console.log(window.innerHeight);
+  let largeur = -505;
+  let hauteur = -505;
 
-  window.scroll(largeur, hauteur + hauteur * 0.00999);
+  // window.scroll(largeur, hauteur);
   let initialPos = [5, 5];
   let nextPos = initialPos;
 
@@ -132,8 +136,8 @@ const Labyrinth = () => {
     upDown++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      hauteur = window.innerHeight * nextPos[1] + hauteurScroll / 20;
-      window.scroll(largeur, hauteur);
+      hauteur = hauteur + 100;
+      lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
     } else {
       upDown--;
       nextPos[1]++;
@@ -144,8 +148,8 @@ const Labyrinth = () => {
     upDown++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      hauteur = window.innerHeight * nextPos[1] + hauteurScroll / 20;
-      window.scroll(largeur, hauteur);
+      hauteur = hauteur - 100;
+      lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
     } else {
       upDown--;
       nextPos[1]--;
@@ -156,8 +160,8 @@ const Labyrinth = () => {
     nextPos[0]--;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      largeur = largeur - parseInt(window.innerWidth);
-      window.scroll(largeur, hauteur);
+      largeur = largeur + 100;
+      lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
     } else {
       nextPos[0]++;
     }
@@ -167,8 +171,8 @@ const Labyrinth = () => {
     nextPos[0]++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      largeur = largeur + parseInt(window.innerWidth);
-      window.scroll(largeur, hauteur);
+      largeur = largeur - 100;
+      lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
     } else {
       nextPos[0]--;
     }
@@ -187,8 +191,9 @@ const Labyrinth = () => {
   }
 
   let allArticles = articles;
+  // console.log(articles);
 
-  document.body.style.overflow = "hidden";
+  // document.body.style.overflow = "hidden";
 
   return (
     <div className="lab-all">
@@ -203,7 +208,7 @@ const Labyrinth = () => {
         <div onClick={scrollRight} className="lab-right"></div>
         <div onClick={scrollDown} className="lab-bottom"></div>
       </div>
-      <div className="lab-wrapper">
+      <div ref={lab} className="lab-wrapper">
         {articles.map((articles, index) => (
           <LabWrapper article={articles} slide={slide} articles={allArticles} title={articles.id} key={uuid()} />
         ))}

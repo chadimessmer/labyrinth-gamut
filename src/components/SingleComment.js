@@ -26,7 +26,7 @@ const RecursiveContainer = ({ finalComment, chatRoomId }) => {
     paddingLeft: "20px",
   };
 
-  let color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+  let color = "hsl(" + Math.random() * 360 + ", 100%, 70%)";
 
   let gradientBeg = "radial-gradient(circle, ";
   let gradentEnd = " 0%, rgba(255,255,255,0) 80%)";

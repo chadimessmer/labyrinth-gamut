@@ -1,25 +1,44 @@
-.submit-form{
-    display: flex;
+.submit-form {
+  display: flex;
+  width: auto;
+  min-width: 100%;
 
-    input{
-        height: 20px;
-        width: 100%;
-        background-color: #FF6347;
-        border: solid 2px black;
+  div {
+    width: 100%;
 
+    form {
+      width: 100%;
+      padding: 10px;
     }
+  }
 
-    button {
-        width: 200px !important;
-        height: 30px;
-        font-size: 20px;
-        margin: 0 auto;
-    }
+  input {
+    height: 20px;
+    width: 100%;
+    background-color: #ff6347;
+    border: solid 2px black;
+  }
+  input:focus {
+    outline: none !important;
+    border: 3px solid black;
+  }
 
-    textarea{
-        height: 200px !important;
-        background-color: #FF6347 ;
-        border: solid 2px black;
+  button {
+    width: 200px !important;
+    height: 30px;
+    font-size: 20px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
 
-    }
+  textarea {
+    height: 200px !important;
+    background-color: #ff6347;
+    border: solid 2px black;
+    width: 100% !important;
+  }
+  textarea:focus {
+    outline: none !important;
+    border: 3px solid black;
+  }
 }

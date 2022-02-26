@@ -2,12 +2,12 @@ import React from "react";
 import { tracesUrl } from "../api";
 import "../styles/app.scss";
 
-const Trace = ({ title, index }) => {
+const Trace = ({ title, index, lay }) => {
   let color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
 
   let thisTrace = index + 1;
 
-  let classTrace = "trace" + thisTrace;
+  let classTrace = "trace" + thisTrace + " trace " + "lay" + lay;
 
   const style = {
     backgroundColor: color,

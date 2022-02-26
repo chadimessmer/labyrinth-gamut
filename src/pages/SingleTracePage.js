@@ -6,7 +6,6 @@ import { useLocation } from "react-router-dom";
 import SingleArticle from "../components/SingleArticle";
 import uuid from "react-uuid";
 import Banner from "../components/Banner";
-import { motion, AnimateSharedLayout } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import Toggle from "../components/Toggle";
@@ -40,36 +39,49 @@ const SingleTracePage = ({ children }) => {
     }
   }
 
+  let articlesLength = thisArticleId.length;
+
   const colorTop = colorBackground[1];
   const colorEnd = colorBackground[colorBackground.length - 1];
+  const colorLast = colorBackground[colorBackground.length - 2];
+
   console.log(colorEnd);
 
   const styleTop = {
-    backgroundColor: "hsl(" + colorTop + ", 100%, 50%)",
+    backgroundColor: "hsl(" + colorTop + ", 100%, 70%)",
   };
   const styleEnd = {
-    backgroundColor: "hsl(" + colorEnd + ", 100%, 50%)",
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundImage: "linear-gradient(" + colorTop + " ," + colorEnd + ")",
   };
+  console.log(styleEnd);
 
   return (
-    <div layout style={styleTop} className="single-page-trace">
+    <div style={styleTop} className="single-page-trace">
       <Banner link={"/"} subTitle={thisTrace[0] !== undefined && thisTrace[0].attributes.title} />
       <div className="content-wrapper">
         <div className="content">
           <div style={styleTop} className="intro">
             {thisTrace[0] !== undefined && <h2> Introduction to {thisTrace[0].attributes.title}</h2>}
-            <AnimateSharedLayout>
-              {thisTrace[0] !== undefined && <motion.p layout>{thisTrace[0].attributes.introduction}</motion.p>}
-            </AnimateSharedLayout>
+            {thisTrace[0] !== undefined && <p layout>{thisTrace[0].attributes.introduction}</p>}
           </div>
 
           {thisArticleId.map((thisArticleId, index) => (
-            <SingleArticle index={index} colorBackground={colorBackground} slide={slide} title={thisArticleId} key={uuid()} />
+            <SingleArticle
+              articlesLength={articlesLength}
+              index={index}
+              colorBackground={colorBackground}
+              slide={slide}
+              title={thisArticleId}
+              key={uuid()}
+            />
           ))}
           <div>
             {contributions && (
               <Link to={"/contribution/" + locationId}>
-                <div style={styleEnd} className="contribute">
+                <div className="contribute">
                   <p className="plus">+</p>
                   <p>contribute to this room by adding a new work</p>
                 </div>

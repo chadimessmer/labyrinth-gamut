@@ -7,16 +7,18 @@ import Embed from "react-embed";
 import SlideShow from "./SlideShow";
 import ReactMarkdown from "react-markdown";
 import uuid from "react-uuid";
+import chroma from "chroma-js";
 
 const LabWrapper = ({ articles, article, slide, title }) => {
+  // console.log(chroma("pink").darken().saturate(2).hex());
   let offsetLarge;
   let offsetHauteur;
   let pos = article.xy;
   let style;
-  let color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+  let color = "hsl(" + Math.random() * 360 + ", 100%, 70%)";
   let beginGrad = "radial-gradient(circle, ";
   let endGrad = "10%, rgba(255,255,255,0) 40%)";
-  let finalColor = beginGrad + color + endGrad;
+  // let finalColor = beginGrad + color + endGrad;
 
   let thisPopulatedArticle = slide.filter((obj) => {
     return obj.id === title;
@@ -36,9 +38,9 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   if (articleLeft[0]) {
     let colorFull = articleLeft[0].color;
     let intermediateColor = Math.abs(colorFull + article.color - 360);
-    console.log(intermediateColor);
+    // console.log(chroma.scale({ h: colorFull, s: 100, l: 70 }, { h: article.color, s: 100, l: 70 }));
 
-    colorLeft = "hsl(" + intermediateColor + ", 100%, 50%)";
+    colorLeft = "hsl(" + intermediateColor + ", 100%, 70%)";
     displayLeft = "visible";
   } else {
     colorLeft = "hsl(0, 100%, 100%)";
@@ -62,7 +64,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     let intermediateColor = Math.abs(colorFull + article.color - 360);
 
     displayRight = "visible";
-    colorRight = "hsl(" + intermediateColor + ", 100%, 50%)";
+    colorRight = "hsl(" + intermediateColor + ", 100%, 70%)";
   } else {
     colorRight = "hsl(0, 100%, 100%)";
     displayRight = "hidden";
@@ -85,7 +87,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     let intermediateColor = (colorFull + article.color) / 2;
 
     displayTop = "visible";
-    colorTop = "hsl(" + intermediateColor + ", 100%, 50%)";
+    colorTop = "hsl(" + intermediateColor + ", 100%, 70%)";
   } else {
     colorTop = "hsl(0, 100%, 100%)";
     displayTop = "hidden";
@@ -106,7 +108,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     let colorFull = articleBottom[0].color;
     let intermediateColor = (colorFull + article.color) / 2;
     displayBottom = "visible";
-    colorBottom = "hsl(" + intermediateColor + ", 100%, 50%)";
+    colorBottom = "hsl(" + intermediateColor + ", 100%, 70%)";
   } else {
     colorBottom = "hsl(0, 100%, 100%)";
     displayBottom = "hidden";
@@ -142,6 +144,9 @@ const LabWrapper = ({ articles, article, slide, title }) => {
       offsetHauteur = pos[1] * (hauteurPositive + hauteurZero) + "px";
     }
 
+    // console.log((pos[1] * hauteurPositive - hauteurZero * (pos[1] - 1)) / hauteur);
+    // console.log((pos[0] * largeurPositive - largeurZero * (pos[0] - 1)) / largeur);
+
     style = {
       position: "absolute",
       top: offsetHauteur,
@@ -149,7 +154,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     };
   };
 
-  let thisColor = "hsl(" + article.color + ", 100%, 50%)";
+  let thisColor = "hsl(" + article.color + ", 100%, 70%)";
 
   let styleCenter = {
     backgroundColor: thisColor,
@@ -211,7 +216,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
         );
       } else if (singleMedia.data.attributes.mime.includes("pdf")) {
         return (
-          <div>
+          <div className="pdf">
             <Document file={singleMedia.data.attributes.url} onLoadSuccess={onDocumentLoadSuccess}>
               <Page pageNumber={pageNumber} />
             </Document>
@@ -238,7 +243,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   const next = () => {
     if (pageNumber < numPages) {
       incrementCounter();
-      console.log(pageNumber);
+      // console.log(pageNumber);
     }
   };
 
@@ -248,21 +253,23 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     }
   };
 
+  // console.log(contentList);
+
   return (
     <div style={style} className="lab-single">
       <div className="lab-relative">
         <div className="background-lab">
-          <div class="container">
-            <div class="container-top">
-              <div style={styleTop} class="top"></div>
+          <div className="container">
+            <div className="container-top">
+              <div style={styleTop} className="top"></div>
             </div>
-            <div class="container-center">
-              <div style={styleLeft} class="left"></div>
-              <div style={styleCenter} class="center-div"></div>
-              <div style={styleRight} class="right"></div>
+            <div className="container-center">
+              <div style={styleLeft} className="left"></div>
+              <div style={styleCenter} className="center-div"></div>
+              <div style={styleRight} className="right"></div>
             </div>
-            <div class="container-bottom">
-              <div style={styleBottom} class="bottom"></div>
+            <div className="container-bottom">
+              <div style={styleBottom} className="bottom"></div>
             </div>
           </div>
         </div>
@@ -278,7 +285,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
                   return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
                 } else if (contentList.external_content) {
                   return <Embed url={contentList.external_content} />;
-                } else if (contentList.__component == "image-slider.image-slider") {
+                } else if (contentList.__component === "image-slider.image-slider") {
                   return <SlideShow images={contentList.imageslider} />;
                 }
               })}

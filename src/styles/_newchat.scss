@@ -24,6 +24,10 @@
     height: 25px;
     margin-bottom: 15px;
   }
+  input:focus {
+    outline: none !important;
+    border: 3px solid white;
+  }
 
   textarea {
     background-color: black;
@@ -35,7 +39,10 @@
     width: 100%;
     margin-bottom: 15px;
   }
-
+  textarea:focus {
+    outline: none !important;
+    border: 3px solid white;
+  }
   button {
     text-transform: uppercase;
     border-radius: 25px;

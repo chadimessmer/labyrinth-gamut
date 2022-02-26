@@ -1,39 +1,44 @@
-.answer{
+.answer {
+  input {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    height: 25px;
+    width: 250px;
+    padding: 4px;
+    margin-bottom: 10px;
+  }
+  input:focus {
+    outline: none !important;
+    border: 3px solid white;
+  }
+  textarea {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    width: 250px;
+    height: 250px;
+    padding: 4px;
+    resize: none;
+  }
+  textarea:focus {
+    outline: none !important;
+    border: 3px solid white;
+  }
+  button {
+    margin-top: 10px;
+    border-radius: 25px;
+    border: 2px solid white;
+    width: 180px;
+    transition: 0.3s ease;
+    height: 30px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+  }
 
-    input {
-        background-color: black;
-        color: white;
-        border: 1px solid white;
-        height: 25px;
-        width: 250px;
-        padding: 4px;
-        margin-bottom: 10px;
-    }
-    textarea {
-        background-color: black;
-        color: white;
-        border: 1px solid white;
-        width: 250px;
-        height: 250px;
-        padding: 4px;
-        resize: none;
-    }
-
-    button{
-        margin-top: 10px;
-        border-radius: 25px;
-        border: 2px solid white;
-        width: 180px;
-        transition: 0.3s ease;
-        height: 30px;
-        color: white;
-        background-color: black;
-        cursor: pointer;
-    }
-
-    button:hover{
-        color: black;
-        background-color: white;
-    }
-    
+  button:hover {
+    color: black;
+    background-color: white;
+  }
 }

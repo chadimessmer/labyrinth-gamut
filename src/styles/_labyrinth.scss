@@ -16,13 +16,17 @@
 }
 
 .lab-wrapper {
+  position: fixed;
   min-width: 900vw;
   min-height: 900vh;
   width: auto;
   height: auto;
-  -ms-transform: translate(440vw);
-  -webkit-transform: translate(440vw);
-  transform: translate(495vw);
+  // -ms-transform: translate(440vw);
+  // -webkit-transform: translate(440vw);
+  // transform: translateY(-405vh);
+  transition: all 2s ease-in-out;
+
+  transform: translate(-505vw, -505vh);
   // -ms-overflow-style: none;  /* IE and Edge */
   // overflow: hidden;
   // scrollbar-width: none;  /* Firefox */
@@ -120,8 +124,7 @@
           height: auto;
         }
       }
-
-      div {
+      .pdf {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -180,7 +183,7 @@
 
 .left {
   margin-top: -10vh;
-  width: 10vw;
+  width: 12vw;
   height: 100vh;
   clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%);
 }
@@ -196,8 +199,8 @@
 
 .right {
   margin-top: -90vh;
-  margin-left: 90vw;
-  width: 10vw;
+  margin-left: 88vw;
+  width: 12vw;
   height: 100vh;
   clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
 }

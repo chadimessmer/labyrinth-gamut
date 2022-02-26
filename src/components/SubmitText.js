@@ -53,9 +53,11 @@ const SubmitText = ({ thisTrace }) => {
             <textarea id="text" name="text"></textarea> <br />
             <label htmlFor="website">Link</label> <br />
             <input type="url" name="website" id="website"></input>
-            <button type="submit" className="contribute-button">
-              Continue
-            </button>
+            <div className="button-div">
+              <button type="submit" className="contribute-button">
+                Continue
+              </button>
+            </div>
           </form>
         </div>
       )}
