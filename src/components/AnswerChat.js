@@ -2,7 +2,7 @@ import "../styles/app.scss";
 import React, { useState } from "react";
 import uuid from "react-uuid";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const AnswerChat = ({ answerTo, chatRoomId, name }) => {
   const [wantReply, setWantReply] = useState(false);

@@ -1,5 +1,5 @@
 import "../styles/app.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadTraces } from "../actions/tracesAction";
 import { useLocation } from "react-router-dom";
@@ -65,7 +65,7 @@ const SingleTracePage = ({ children }) => {
         <div className="content">
           <div style={styleTop} className="intro">
             {thisTrace[0] !== undefined && <h2> Introduction to {thisTrace[0].attributes.title}</h2>}
-            {thisTrace[0] !== undefined && <p layout>{thisTrace[0].attributes.introduction}</p>}
+            {thisTrace[0] !== undefined && <div dangerouslySetInnerHTML={{ __html: thisTrace[0].attributes.introduction }} />}
           </div>
 
           {thisArticleId.map((thisArticleId, index) => (

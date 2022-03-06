@@ -2,7 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import AnswerChat from "./AnswerChat";
 import uuid from "react-uuid";
-import { format, formatDistance } from "date-fns";
+import { formatDistance } from "date-fns";
 
 const RecursiveContainer = ({ finalComment, chatRoomId }) => {
   let message = finalComment.attributes.chat;

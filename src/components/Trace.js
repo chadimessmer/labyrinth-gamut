@@ -1,5 +1,4 @@
 import React from "react";
-import { tracesUrl } from "../api";
 import "../styles/app.scss";
 
 const Trace = ({ title, index, lay }) => {

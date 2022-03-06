@@ -6,9 +6,8 @@ import { loadTraces } from "../actions/tracesAction";
 import Trace from "../components/Trace";
 import { Link } from "react-router-dom";
 import uuid from "react-uuid";
-import Banner from "../components/Banner";
 
-const lay = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+const lay = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 let i = lay.length,
 	k,
 	temp;

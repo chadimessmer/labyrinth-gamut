@@ -1,8 +1,6 @@
 import "../styles/app.scss";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadTraces } from "../actions/tracesAction";
-import { Link, Routes, Route } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import Banner from "../components/Banner";
 
 const Lounge = () => {

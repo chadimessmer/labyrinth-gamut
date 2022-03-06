@@ -1,6 +1,7 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
+import uuid from "react-uuid";
 
 const SlideShow = ({ images }) => {
   const slideImages = [];
@@ -18,11 +19,11 @@ const SlideShow = ({ images }) => {
     arrows: false,
   };
   return (
-    <div>
+    <div >
       <Slide {...properties}>
         {allImages.map((el, index) => {
           return (
-            <div className="each-slide">
+            <div key={uuid()} className="each-slide">
               <div style={{ backgroundImage: `url(${slideImages[index]})` }}></div>
             </div>
           );

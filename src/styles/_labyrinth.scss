@@ -112,13 +112,16 @@
 			height: auto;
 
 			p {
-				margin-top: 30px;
-				margin-bottom: 30px;
+				// margin-top: 30px;
+				// margin-bottom: 30px;
 
 				img {
 					width: 100%;
 					height: auto;
 				}
+			}
+			.react-slideshow-container {
+				padding-top: 15px;
 			}
 			.pdf {
 				display: flex;
@@ -131,7 +134,7 @@
 	img {
 		width: 100%;
 		height: auto;
-		margin: 40px 0px 40px 0px;
+		// margin: 40px 0px 40px 0px;
 	}
 
 	.article-title {

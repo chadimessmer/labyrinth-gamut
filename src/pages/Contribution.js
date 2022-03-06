@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadTraces } from "../actions/tracesAction";
 import ContributeOption from "../components/ContributeOption";
-import uuid from "react-uuid";
 import { useLocation } from "react-router-dom";
 
 import Banner from "../components/Banner";
@@ -57,15 +56,18 @@ const Contribution = () => {
     }
   };
 
-  console.log(thisTrace);
-  let link = "/trace/" + thisTrace[0].id;
+  let link;
+
+  if(thisTrace[0]){
+    link = "/trace/" + thisTrace[0].id;
+  }
 
   // console.log(locationId);
 
   return (
     <div>
       <div className="contribute-wrapper">
-        <Banner link={link} subTitle={"Contribution"} />
+        {thisTrace[0] && <Banner link={link} subTitle={"Contribution"} />}
         <div className="contribution-container">
           {contribute()}
           {continueContribute && <ContributeOption thisTrace={thisTrace} />}

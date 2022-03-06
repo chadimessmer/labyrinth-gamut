@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import { Player } from "video-react";
-import { Document, Page, pdfjs } from "react-pdf";
-import { Link } from "react-router-dom";
+import { Document, Page } from "react-pdf";
 import Embed from "react-embed";
 import SlideShow from "./SlideShow";
-import ReactMarkdown from "react-markdown";
 import uuid from "react-uuid";
 import chroma from "chroma-js";
 
@@ -205,19 +203,19 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   const injectMedia = () => {
     if (singleMedia.data) {
       if (singleMedia.data.attributes.mime.includes("audio")) {
-        return <ReactAudioPlayer controls src={singleMedia.data.attributes.url} />;
+        return <ReactAudioPlayer key={uuid()} controls src={singleMedia.data.attributes.url} />;
       } else if (singleMedia.data.attributes.mime.includes("image")) {
-        return <img src={singleMedia.data.attributes.url} alt={singleMedia.data.attributes.name}></img>;
+        return <img key={uuid()} src={singleMedia.data.attributes.url} alt={singleMedia.data.attributes.name}></img>;
       } else if (singleMedia.data.attributes.mime.includes("video")) {
         return (
-          <Player>
+          <Player key={uuid()}>
             <source src={singleMedia.data.attributes.url} />
           </Player>
         );
       } else if (singleMedia.data.attributes.mime.includes("pdf")) {
         return (
-          <div className="pdf">
-            <Document file={singleMedia.data.attributes.url} onLoadSuccess={onDocumentLoadSuccess}>
+          <div key={uuid()} className="pdf">
+            <Document  file={singleMedia.data.attributes.url} onLoadSuccess={onDocumentLoadSuccess}>
               <Page pageNumber={pageNumber} />
             </Document>
             <p>
@@ -231,7 +229,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   const authorWebsite = () => {
     if (authorWeb) {
       return (
-        <a rel="noreferrer" target="_blank" href={authorWeb}>
+        <a key={uuid()} rel="noreferrer" target="_blank" href={authorWeb}>
           {thisAuthor}
         </a>
       );
@@ -282,11 +280,11 @@ const LabWrapper = ({ articles, article, slide, title }) => {
             <div className="article-content">
               {contentList.map((contentList, index) => {
                 if (contentList.text) {
-                  return <ReactMarkdown key={uuid()}>{contentList.text}</ReactMarkdown>;
+                  return <div dangerouslySetInnerHTML={{ __html: contentList.text }} key={uuid()} />;
                 } else if (contentList.external_content) {
-                  return <Embed url={contentList.external_content} />;
+                  return <Embed key={uuid()} url={contentList.external_content} />;
                 } else if (contentList.__component === "image-slider.image-slider") {
-                  return <SlideShow images={contentList.imageslider} />;
+                  return <SlideShow key={uuid()} images={contentList.imageslider} />;
                 }
               })}
               {singleMedia && injectMedia()}

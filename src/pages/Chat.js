@@ -2,12 +2,10 @@ import "../styles/app.scss";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadTraces } from "../actions/tracesAction";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import uuid from "react-uuid";
 import Banner from "../components/Banner";
 import RecursiveContainer from "../components/SingleComment";
-import axios from "axios";
-import PostComment from "../components/PostComment";
 import AnswerChat from "../components/AnswerChat";
 
 const Chat = () => {

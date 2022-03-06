@@ -1,14 +1,11 @@
 import "../styles/app.scss";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadTraces } from "../actions/tracesAction";
-import ReactMarkdown from "react-markdown";
+import React, { useState } from "react";
+import {  useSelector } from "react-redux";
 import uuid from "react-uuid";
 // import Toggle from "./Toggle";
 import ReactAudioPlayer from "react-audio-player";
 import { Player } from "video-react";
 import { Document, Page, pdfjs } from "react-pdf";
-import { Link } from "react-router-dom";
 import Embed from "react-embed";
 import SlideShow from "./SlideShow";
 
@@ -62,7 +59,7 @@ const SingleArticle = ({ title, slide, index, colorBackground, articlesLength })
 							<Page pageNumber={pageNumber} />
 						</Document>
 						<p className="nav-pdf">
-							<span onClick={prev}> prev </span> {pageNumber} of {numPages} <span onClick={next}> next </span>
+							<span className="pdf-toggle" onClick={prev}> ← </span> {pageNumber} of {numPages} <span className="pdf-toggle" onClick={next}> → </span>
 						</p>
 					</div>
 				);
