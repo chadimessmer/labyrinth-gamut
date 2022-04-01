@@ -6,6 +6,9 @@ import { formatDistance } from "date-fns";
 
 const RecursiveContainer = ({ finalComment, chatRoomId }) => {
   let message = finalComment.attributes.chat;
+  message.replace("\n", "<br/>");
+  console.log(message);
+
   let thisId = finalComment.id;
   let children = finalComment.answer;
   let name = finalComment.attributes.name;
@@ -13,13 +16,13 @@ const RecursiveContainer = ({ finalComment, chatRoomId }) => {
   let dateRaw = finalComment.attributes.publishedAt;
 
   const current = new Date();
-  console.log(current);
+  // console.log(current);
 
   let newDate = new Date();
   let dateNow = newDate.getDate();
-  console.log(dateNow);
+  // console.log(dateNow);
   let date = new Date(dateRaw);
-  console.log(date);
+  // console.log(date);
   // formatDistance(date);
 
   const style = {
@@ -43,7 +46,8 @@ const RecursiveContainer = ({ finalComment, chatRoomId }) => {
         <p>{name}</p>
         <p>{formatDistance(date, current)}</p>
       </div>
-      <ReactMarkdown key={uuid()}>{message}</ReactMarkdown>
+      <div>{message}</div>
+      {/* <ReactMarkdown key={uuid()}>{message}</ReactMarkdown> */}
       <AnswerChat name={name} answerTo={answerTo} chatRoomId={chatRoomId} />
 
       {children && children.map((children) => <RecursiveContainer answerTo={thisId} chatRoomId={chatRoomId} key={uuid()} finalComment={children} />)}

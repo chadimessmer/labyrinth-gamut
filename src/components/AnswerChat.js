@@ -23,7 +23,9 @@ const AnswerChat = ({ answerTo, chatRoomId, name }) => {
     console.log(dataForm);
     const finalValue = {};
     finalValue.name = value.name;
+    // value.chat.replace("\n", "<br/>");
     finalValue.chat = value.chat;
+    finalValue.chat.replace("\n", "<br/>");
     finalValue.chatroom = chatRoomId;
     finalValue.chatmessage = answerTo;
     const dt = { data: finalValue };

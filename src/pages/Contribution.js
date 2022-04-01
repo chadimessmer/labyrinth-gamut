@@ -43,7 +43,7 @@ const Contribution = () => {
           <h2>Contribute to {traceName} !</h2>
           {accepted && (
             <div>
-              <p>{contributionIntro}</p>
+              <div dangerouslySetInnerHTML={{ __html: contributionIntro }} />
               <div onClick={okContinue} className="contribute-button">
                 Continue
               </div>
@@ -58,7 +58,7 @@ const Contribution = () => {
 
   let link;
 
-  if(thisTrace[0]){
+  if (thisTrace[0]) {
     link = "/trace/" + thisTrace[0].id;
   }
 

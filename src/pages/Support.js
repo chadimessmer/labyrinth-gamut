@@ -19,7 +19,7 @@ const Support = () => {
         <Banner link={"/lounge"} subTitle={"Lounge"} />
         <div className="support-content">
           <h2>SUPPORT</h2>
-          {support.attributes !== undefined && <ReactMarkdown className="support-text">{support.attributes.text}</ReactMarkdown>}
+          {support.attributes !== undefined && <div dangerouslySetInnerHTML={{ __html: support.attributes.text }} className="support-text" />}
 
           <a href="http://www.paypal.com" target="blank">
             <div className="support-button">Unterstütze uns</div>

@@ -19,7 +19,7 @@ const Vision = () => {
         <Banner link={"/lounge"} subTitle={"Lounge"} />
         <div className="vision-content">
           <h2>VISION</h2>
-          {vision.attributes !== undefined && <ReactMarkdown className="vision-text">{vision.attributes.content}</ReactMarkdown>}
+          {vision.attributes !== undefined && <div dangerouslySetInnerHTML={{ __html: vision.attributes.content }} className="vision-text" />}
         </div>
       </div>
     </div>

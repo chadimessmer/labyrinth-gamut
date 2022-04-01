@@ -1,60 +1,61 @@
 .single-page-trace {
-	height: auto;
-	min-height: 100vh;
-	width: auto;
-	min-width: 100%;
-	// background: rgb(175, 47, 47);
+  height: auto;
+  min-height: 100vh;
+  width: auto;
+  min-width: 100%;
+  // background: rgb(175, 47, 47);
 
-	.content-wrapper {
-		// display: flex;
-		// flex-direction: column;
-		// justify-self: center;
-		// align-items: center;
-		width: 100%;
-		max-width: 100vw;
-		height: auto;
-		min-height: 50vh;
+  .content-wrapper {
+    // display: flex;
+    // flex-direction: column;
+    // justify-self: center;
+    // align-items: center;
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    min-height: 50vh;
 
-		.content {
-			width: 100%;
-			// text-align: center;
-			min-height: 100%;
+    .content {
+      width: 100%;
+      // text-align: center;
+      min-height: 100%;
 
-			h2 {
-				margin: 10px 0px 10px 0px;
-			}
+      h2 {
+        margin: 10px 0px 10px 0px;
+        text-align: center;
+      }
 
-			h3 {
-				margin: 10px 0px 10px 0px;
-				font-weight: normal;
-			}
+      h3 {
+        margin: 10px 0px 10px 0px;
+        font-weight: normal;
+      }
 
-			.intro {
-				max-width: 700px;
-				width: 95%;
-				margin: 0 auto;
+      .intro {
+        max-width: 700px;
+        width: 95%;
+        margin: 0 auto;
 
-				div {
-					text-align: left;
-				}
-			}
-		}
-	}
-	.nav-pdf {
-		text-align: center !important;
-	}
-	.pdf-toggle {
-		cursor: pointer;
-	}
+        div {
+          text-align: left;
+        }
+      }
+    }
+  }
+  .nav-pdf {
+    text-align: center !important;
+  }
+  .pdf-toggle {
+    cursor: pointer;
+  }
 
-	.contribute {
-		text-align: center;
-		.plus {
-			font-size: 24px;
-		}
+  .contribute {
+    text-align: center;
+    .plus {
+      font-size: 24px;
+    }
 
-		padding-bottom: 40px;
-	}
+    padding-bottom: 40px;
+  }
 }
 
 // .ending {
