@@ -215,11 +215,19 @@ const LabWrapper = ({ articles, article, slide, title }) => {
       } else if (singleMedia.data.attributes.mime.includes("pdf")) {
         return (
           <div key={uuid()} className="pdf">
-            <Document  file={singleMedia.data.attributes.url} onLoadSuccess={onDocumentLoadSuccess}>
+            <Document file={singleMedia.data.attributes.url} onLoadSuccess={onDocumentLoadSuccess}>
               <Page pageNumber={pageNumber} />
             </Document>
             <p>
-              <span onClick={prev}> prev </span> {pageNumber} of {numPages} <span onClick={next}> next </span>
+              <span className="pdf-toggle" onClick={prev}>
+                {" "}
+                ←{" "}
+              </span>{" "}
+              {pageNumber} of {numPages}{" "}
+              <span className="pdf-toggle" onClick={next}>
+                {" "}
+                →{" "}
+              </span>
             </p>
           </div>
         );

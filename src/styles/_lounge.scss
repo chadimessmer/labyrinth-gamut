@@ -1,40 +1,76 @@
-.lounge{
-    height: 100vh;
-    display: block;
+.lounge {
+  height: 100vh;
+  display: block;
+  flex-direction: column;
+  // align-items: center;
+  // justify-content: space-around;
+  // align-content: space-around;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  background-color: rgb(9, 56, 183);
+
+  .visions {
+    display: flex;
     flex-direction: column;
-    // align-items: center;
-    // justify-content: space-around;
-    // align-content: space-around;
-    a{
-        text-decoration: none;
-        color: white;
+    // background: rgb(9, 56, 183);
+    // background: linear-gradient(
+    //   180deg,
+    //   rgba(9, 56, 183, 1) 0%,
+    //   rgba(9, 56, 183, 1) 20%,
+    //   rgba(0, 0, 0, 1) 30%,
+    //   rgba(0, 0, 0, 1) 45%,
+    //   rgba(255, 239, 95, 1) 55%,
+    //   rgba(255, 239, 95, 1) 70%,
+    //   rgba(255, 99, 71, 1) 80%
+    // );
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      //   height: 20vh;
+      width: 100vw;
     }
+    .block {
+      height: 14.75vh;
+    }
+    .trans {
+      height: 7vh;
+    }
+    .one {
+      background: rgb(0, 0, 0);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(9, 56, 183, 1) 100%);
+    }
+    .two {
+      background: rgb(255, 239, 95);
+      background: linear-gradient(0deg, rgba(255, 239, 95, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    }
+    .three {
+      background: rgb(255, 99, 71);
+      background: linear-gradient(0deg, rgba(255, 99, 71, 1) 0%, rgba(255, 239, 95, 1) 100%);
+    }
+    .vision {
+      background-color: rgba(9, 56, 183, 1);
+    }
+    .chatrooms {
+      background-color: rgba(0, 0, 0, 1);
+    }
+  }
 
-    background-color:rgb(9,56,183) ;
+  .visionarys {
+    background-color: rgba(255, 239, 95, 1);
 
-    .visions{
-        display: flex;
-        flex-direction: column;
-        background: rgb(9,56,183);
-        background: linear-gradient(180deg, rgba(9,56,183,1) 0%, rgba(9,56,183,1) 20%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 45%, rgba(255,239,95,1) 55%, rgba(255,239,95,1) 70%, rgba(255,99,71,1) 80%);         div{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 20vh;
-        width: 100vw;
+    h2 {
+      color: black;
     }
-    }
-    
-    .visionarys{
-        h2{
-            color: black;
-        }
-    }
+  }
 
-    .support{
-        h2{
-            color: black;
-        }
-
+  .support {
+    background-color: rgba(255, 99, 71, 1);
+    h2 {
+      color: black;
     }
+  }
 }

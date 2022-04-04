@@ -20,10 +20,10 @@
   width: auto;
   height: auto;
   transition: all 1.5s ease-in-out;
-  -ms-transform: translate(-505vw, -505vh);
-  -webkit-transform: translate(-505vw, -505vh);
+  // -ms-transform: translate(-505vw, -505vh);
+  // -webkit-transform: translate(-505vw, -505vh);
 
-  transform: translate(-505vw, -505vh);
+  // transform: translate(-505vw, -505vh);
   // -ms-overflow-style: none;  /* IE and Edge */
   // overflow: hidden;
   // scrollbar-width: none;  /* Firefox */
@@ -84,7 +84,7 @@
 }
 .wrapp-lab-content {
   position: absolute;
-  top: 2.5vh;
+  top: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +101,7 @@
   -webkit-mask-position: top, left bottom;
 
   .single-article {
-    width: 100%;
+    width: 80%;
     max-width: 700px;
     height: auto;
     padding-top: 60px;
@@ -121,6 +121,10 @@
           width: 100%;
           height: auto;
         }
+      }
+
+      .pdf-toggle {
+        cursor: pointer;
       }
 
       div {

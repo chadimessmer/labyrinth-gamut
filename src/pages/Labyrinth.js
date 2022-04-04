@@ -14,7 +14,7 @@ smoothscroll.polyfill();
 const Labyrinth = () => {
   const lab = useRef(null);
   useEffect(() => {
-    // console.log(lab.current);
+    console.log(lab.current);
   });
 
   const [upExist, setUpExist] = useState(true);
@@ -73,19 +73,33 @@ const Labyrinth = () => {
 
     // si 0 ---> on déplace X de -1 ou 1 et le Y ne change pas et l'inverse si c'est 1
     if (moveXorY === 0) {
-      if (xOther === 0) {
-        newX = xOther++;
+      // if (xOther === 0) {
+      //   newX = xOther++;
+      // } else {
+      let plusMinus = Math.round(Math.random());
+      if (plusMinus === 0) {
+        newX = -1;
       } else {
-        newX = Math.floor(Math.random() * 3) - 1;
+        newX = 1;
       }
+      // newX = Math.floor(Math.random() * 3) - 1;
+      console.log(newX);
+      // }
       newCoordinates = [xOther + newX, yOther, 1];
       twoCoordinates = [xOther + newX, yOther];
     } else {
-      if (yOther === 0) {
-        newY = yOther++;
+      // if (yOther === 0) {
+      //   newY = yOther++;
+      // } else {
+      let plusMinus = Math.round(Math.random());
+      if (plusMinus === 0) {
+        newY = -1;
       } else {
-        newY = Math.floor(Math.random() * 3) - 1;
+        newY = 1;
       }
+
+      // newY = Math.floor(Math.random() * 3) - 1;
+      // }
       newCoordinates = [xOther, yOther + newY, 1];
       twoCoordinates = [xOther, yOther + newY];
     }
@@ -138,6 +152,10 @@ const Labyrinth = () => {
     if (includes) {
       hauteur = hauteur + 100;
       lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.webkitTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.msTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.MozTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.OTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
     } else {
       upDown--;
       nextPos[1]++;
@@ -150,6 +168,10 @@ const Labyrinth = () => {
     if (includes) {
       hauteur = hauteur - 100;
       lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.webkitTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.msTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.MozTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.OTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
     } else {
       upDown--;
       nextPos[1]--;
@@ -162,6 +184,10 @@ const Labyrinth = () => {
     if (includes) {
       largeur = largeur + 100;
       lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.webkitTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.msTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.MozTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.OTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
     } else {
       nextPos[0]++;
     }
@@ -173,6 +199,10 @@ const Labyrinth = () => {
     if (includes) {
       largeur = largeur - 100;
       lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.webkitTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.msTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.MozTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      lab.current.style.OTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
     } else {
       nextPos[0]--;
     }
@@ -189,9 +219,18 @@ const Labyrinth = () => {
       }, 250);
     });
   }
+  if (lab.current) {
+    let widthMove = window.innerWidth * -5.05;
+    let heightMove = window.innerHeight * -5.05;
+    lab.current.style.transform = "translate(" + widthMove + "px, " + heightMove + "px)";
+    lab.current.style.webkitTransform = "translate(" + widthMove + "px, " + heightMove + "px)";
+    lab.current.style.msTransform = "translate(" + widthMove + "px, " + heightMove + "px)";
+    lab.current.style.MozTransform = "translate(" + widthMove + "px, " + heightMove + "px)";
+    lab.current.style.OTransform = "translate(" + widthMove + "px, " + heightMove + "px)";
+  }
 
   let allArticles = articles;
-  // console.log(articles);
+  console.log(labyrinth);
 
   // document.body.style.overflow = "hidden";
 
