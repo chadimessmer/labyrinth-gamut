@@ -136,8 +136,8 @@ const Labyrinth = () => {
     thisArticle["color"] = Math.random() * 360;
   }
   let hauteurScroll = parseInt(window.innerHeight);
-  let largeur = -505;
-  let hauteur = -505;
+  let largeur = window.innerWidth * -5.05;
+  let hauteur = window.innerHeight * -5.05;
 
   // window.scroll(largeur, hauteur);
   let initialPos = [5, 5];
@@ -150,12 +150,12 @@ const Labyrinth = () => {
     upDown++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      hauteur = hauteur + 100;
-      lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.webkitTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.msTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.MozTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.OTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      hauteur = hauteur + window.innerHeight;
+      lab.current.style.transform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.webkitTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.msTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.MozTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.OTransform = "translate(" + largeur + "px, " + hauteur + "px)";
     } else {
       upDown--;
       nextPos[1]++;
@@ -166,12 +166,12 @@ const Labyrinth = () => {
     upDown++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      hauteur = hauteur - 100;
-      lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.webkitTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.msTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.MozTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.OTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      hauteur = hauteur - window.innerHeight;
+      lab.current.style.transform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.webkitTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.msTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.MozTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.OTransform = "translate(" + largeur + "px, " + hauteur + "px)";
     } else {
       upDown--;
       nextPos[1]--;
@@ -182,12 +182,12 @@ const Labyrinth = () => {
     nextPos[0]--;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      largeur = largeur + 100;
-      lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.webkitTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.msTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.MozTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.OTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      largeur = largeur + window.innerWidth;
+      lab.current.style.transform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.webkitTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.msTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.MozTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.OTransform = "translate(" + largeur + "px, " + hauteur + "px)";
     } else {
       nextPos[0]++;
     }
@@ -197,12 +197,12 @@ const Labyrinth = () => {
     nextPos[0]++;
     let includes = labyrinth.some((a) => nextPos.every((v, i) => v === a[i]));
     if (includes) {
-      largeur = largeur - 100;
-      lab.current.style.transform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.webkitTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.msTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.MozTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
-      lab.current.style.OTransform = "translate(" + largeur + "vw, " + hauteur + "vh)";
+      largeur = largeur - window.innerWidth;
+      lab.current.style.transform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.webkitTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.msTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.MozTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      lab.current.style.OTransform = "translate(" + largeur + "px, " + hauteur + "px)";
     } else {
       nextPos[0]--;
     }

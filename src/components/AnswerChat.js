@@ -60,7 +60,9 @@ const AnswerChat = ({ answerTo, chatRoomId, name }) => {
         <form name={formName} onSubmit={submitNewChat}>
           <input required name="name" type="text" placeholder="Name"></input> <br />
           <textarea required name="chat" placeholder="your messsage hier"></textarea> <br />
-          <button type="submit">send</button>
+          <div className="button-submit">
+            <button type="submit">send</button>
+          </div>
         </form>
       )}
     </div>

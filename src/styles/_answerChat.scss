@@ -25,11 +25,14 @@
     outline: none !important;
     border: 3px solid white;
   }
+  .button-submit {
+    // padding-left: 35px;
+  }
   button {
     margin-top: 10px;
     border-radius: 25px;
     border: 2px solid white;
-    width: 180px;
+    width: 260px;
     transition: 0.3s ease;
     height: 30px;
     color: white;
