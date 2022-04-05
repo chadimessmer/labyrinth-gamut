@@ -35,10 +35,10 @@ const Labyrinth = () => {
     articles[i] = temp;
   }
 
-  let labyrinth = [[5, 5, 0]];
+  let labyrinth = [[0, 0, 0]];
   let count = 0;
 
-  let onlyTwo = [[5, 5]];
+  let onlyTwo = [[0, 0]];
 
   let offset = 0;
   function insertAndShift(arr, from, to) {
@@ -129,6 +129,7 @@ const Labyrinth = () => {
     }
     //   }
   }
+  console.log(count);
 
   for (let i = 0; i < articles.length; i++) {
     let thisArticle = articles[i];
@@ -136,11 +137,11 @@ const Labyrinth = () => {
     thisArticle["color"] = Math.random() * 360;
   }
   let hauteurScroll = parseInt(window.innerHeight);
-  let largeur = window.innerWidth * -5.05;
-  let hauteur = window.innerHeight * -5.05;
+  let largeur = window.innerWidth * -0.05;
+  let hauteur = window.innerHeight * -0.05;
 
   // window.scroll(largeur, hauteur);
-  let initialPos = [5, 5];
+  let initialPos = [0, 0];
   let nextPos = initialPos;
 
   let upDown = 0;
@@ -220,8 +221,8 @@ const Labyrinth = () => {
     });
   }
   if (lab.current) {
-    let widthMove = window.innerWidth * -5.05;
-    let heightMove = window.innerHeight * -5.05;
+    let widthMove = window.innerWidth * -0.05;
+    let heightMove = window.innerHeight * -0.05;
     lab.current.style.transform = "translate(" + widthMove + "px, " + heightMove + "px)";
     lab.current.style.webkitTransform = "translate(" + widthMove + "px, " + heightMove + "px)";
     lab.current.style.msTransform = "translate(" + widthMove + "px, " + heightMove + "px)";

@@ -126,12 +126,10 @@ const LabWrapper = ({ articles, article, slide, title }) => {
 
     if (pos[0] === 0) {
       offsetLarge = largeurZero + "px";
-    } else if (pos[0] === -1) {
-      offsetLarge = pos[0] * (largeurPositive + largeurZero * 2 * pos[0]) + "px";
     } else if (pos[0] > 0) {
       offsetLarge = pos[0] * largeurPositive - largeurZero * (pos[0] - 1) + "px";
     } else {
-      offsetLarge = pos[0] * (largeurPositive - (largeurZero / 2) * 2) + "px";
+      offsetLarge = pos[0] * largeurPositive - largeurZero * (pos[0] - 1) + "px";
     }
 
     if (pos[1] === 0) {
@@ -139,7 +137,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     } else if (pos[1] > 0) {
       offsetHauteur = pos[1] * hauteurPositive - hauteurZero * (pos[1] - 1) + "px";
     } else {
-      offsetHauteur = pos[1] * (hauteurPositive + hauteurZero) + "px";
+      offsetHauteur = pos[1] * hauteurPositive - hauteurZero * (pos[1] - 1) + "px";
     }
 
     // console.log((pos[1] * hauteurPositive - hauteurZero * (pos[1] - 1)) / hauteur);
