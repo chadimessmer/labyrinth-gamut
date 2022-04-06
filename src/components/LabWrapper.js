@@ -22,6 +22,15 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     return obj.id === title;
   });
 
+  let displayTopLeft;
+  let displayTopRight;
+  let displayLeftTop;
+  let displayRightTop;
+  let displayBottomLeft;
+  let displayLeftBottom;
+  let displayRightBottom;
+  let displayBottomRight;
+
   // couleur gauche
   let articleLeftOne = articles.filter((obj) => {
     return obj.xy[0] === article.xy[0] - 1;
@@ -31,6 +40,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   });
 
   let colorLeft;
+  let colorLeftTop;
 
   let displayLeft;
   if (articleLeft[0]) {
@@ -40,9 +50,14 @@ const LabWrapper = ({ articles, article, slide, title }) => {
 
     colorLeft = "hsl(" + intermediateColor + ", 100%, 70%)";
     displayLeft = "visible";
+    colorLeftTop = colorLeft;
   } else {
     colorLeft = "hsl(0, 100%, 100%)";
     displayLeft = "hidden";
+    displayTopLeft = "hidden";
+    displayLeftTop = "hidden";
+    displayBottomLeft = "hidden";
+    displayLeftBottom = "hidden";
   }
 
   // couleur droite
@@ -66,6 +81,10 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   } else {
     colorRight = "hsl(0, 100%, 100%)";
     displayRight = "hidden";
+    displayTopRight = "hidden";
+    displayRightTop = "hidden";
+    displayRightBottom = "hidden";
+    displayBottomRight = "hidden";
   }
 
   // couleur haut
@@ -79,6 +98,8 @@ const LabWrapper = ({ articles, article, slide, title }) => {
 
   let colorTop;
   let displayTop;
+  let colorTopLeft;
+  let colorTopRight;
 
   if (articleTop[0]) {
     let colorFull = articleTop[0].color;
@@ -86,9 +107,15 @@ const LabWrapper = ({ articles, article, slide, title }) => {
 
     displayTop = "visible";
     colorTop = "hsl(" + intermediateColor + ", 100%, 70%)";
+    colorTopLeft = colorTop;
+    colorTopRight = colorTop;
   } else {
     colorTop = "hsl(0, 100%, 100%)";
     displayTop = "hidden";
+    displayTopLeft = "hidden";
+    displayTopRight = "hidden";
+    displayLeftTop = "hidden";
+    displayRightTop = "hidden";
   }
 
   // couleur bas
@@ -110,6 +137,10 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   } else {
     colorBottom = "hsl(0, 100%, 100%)";
     displayBottom = "hidden";
+    displayBottomLeft = "hidden";
+    displayLeftBottom = "hidden";
+    displayRightBottom = "hidden";
+    displayBottomRight = "hidden";
   }
 
   const calculatePosition = () => {
@@ -174,6 +205,44 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   let styleRight = {
     backgroundImage: "linear-gradient(to right," + thisColor + ", " + colorRight + ")",
     visibility: displayRight,
+  };
+
+  let topLeft = {
+    backgroundImage: "linear-gradient(" + colorTop + ", " + thisColor + ")",
+    visibility: displayTopLeft,
+  };
+
+  let topRight = {
+    backgroundImage: "linear-gradient(" + colorTop + ", " + thisColor + ")",
+    visibility: displayTopRight,
+  };
+  let leftTop = {
+    backgroundImage: "linear-gradient(to left," + thisColor + ", " + colorLeft + ")",
+    visibility: displayLeftTop,
+  };
+  let rightTop = {
+    backgroundImage: "linear-gradient(to right," + thisColor + ", " + colorRight + ")",
+    visibility: displayRightTop,
+  };
+
+  let bottomLeft = {
+    backgroundImage: "linear-gradient(" + thisColor + " ," + colorBottom + ")",
+    visibility: displayBottomLeft,
+  };
+
+  let leftBottom = {
+    backgroundImage: "linear-gradient(to left," + thisColor + ", " + colorLeft + ")",
+    visibility: displayLeftBottom,
+  };
+
+  let rightBottom = {
+    backgroundImage: "linear-gradient(to right," + thisColor + ", " + colorRight + ")",
+    visibility: displayRightBottom,
+  };
+
+  let bottomRight = {
+    backgroundImage: "linear-gradient(" + thisColor + " ," + colorBottom + ")",
+    visibility: displayBottomRight,
   };
 
   if (pos) {
@@ -265,15 +334,23 @@ const LabWrapper = ({ articles, article, slide, title }) => {
         <div className="background-lab">
           <div className="container">
             <div className="container-top">
+              <div style={topLeft} className="top-left"></div>
               <div style={styleTop} className="top"></div>
+              <div style={topRight} className="top-right"></div>
             </div>
             <div className="container-center">
+              <div style={leftTop} className="left-top"></div>
               <div style={styleLeft} className="left"></div>
               <div style={styleCenter} className="center-div"></div>
               <div style={styleRight} className="right"></div>
+              <div style={rightTop} className="right-top"></div>
+              <div style={leftBottom} className="left-bottom"></div>
+              <div style={rightBottom} className="right-bottom"></div>
             </div>
             <div className="container-bottom">
+              <div style={bottomLeft} className="bottom-left"></div>
               <div style={styleBottom} className="bottom"></div>
+              <div style={bottomRight} className="bottom-right"></div>
             </div>
           </div>
         </div>
