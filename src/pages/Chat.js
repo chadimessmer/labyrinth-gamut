@@ -78,7 +78,7 @@ const Chat = () => {
       <Banner link={"/chatroom"} subTitle={"Lounge"} />
       <div className="chat-container">
         {thisChatRoom[0] !== undefined && <h2>{thisChatRoom[0].attributes.title}</h2>}
-        {thisChatRoom[0] !== undefined && <p>{thisChatRoom[0].attributes.introduction}</p>}
+        {thisChatRoom[0] !== undefined && <p className="chat-intro">{thisChatRoom[0].attributes.introduction}</p>}
         {reversedComment !== undefined &&
           reorderedComment.map((reorderedComment) => <RecursiveContainer chatRoomId={chatRoomId} key={uuid()} finalComment={reorderedComment} />)}
         <AnswerChat chatRoomId={chatRoomId} />

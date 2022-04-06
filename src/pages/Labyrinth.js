@@ -122,7 +122,7 @@ const Labyrinth = () => {
       labyrinth.push(newCoordinates);
       onlyTwo.push(twoCoordinates);
       articleRandom[2]++;
-      if (articleRandom[2] > 1 || articleRandom[1] < 3 || articleRandom[0] < 3) {
+      if (articleRandom[2] > 2) {
         insertAndShift(labyrinth, articleRandomPos, 0);
         offset++;
       }
