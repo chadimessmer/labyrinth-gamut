@@ -5,11 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import LabWrapper from "../components/LabWrapper";
 import uuid from "react-uuid";
-import smoothscroll from "smoothscroll-polyfill";
-import { isMobile } from "react-device-detect";
+// import smoothscroll from "smoothscroll-polyfill";
+import { isMobileOnly } from "react-device-detect";
 
 // Components
-smoothscroll.polyfill();
 
 const Labyrinth = () => {
   const lab = useRef(null);
@@ -18,6 +17,7 @@ const Labyrinth = () => {
   });
 
   const [upExist, setUpExist] = useState(true);
+  const [position, setPosition] = useState([0, 0]);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -157,6 +157,9 @@ const Labyrinth = () => {
       lab.current.style.msTransform = "translate(" + largeur + "px, " + hauteur + "px)";
       lab.current.style.MozTransform = "translate(" + largeur + "px, " + hauteur + "px)";
       lab.current.style.OTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      // setPosition([nextPos]);
+      // console.log(nextPos);
+      // console.log(position);
     } else {
       upDown--;
       nextPos[1]++;
@@ -173,6 +176,7 @@ const Labyrinth = () => {
       lab.current.style.msTransform = "translate(" + largeur + "px, " + hauteur + "px)";
       lab.current.style.MozTransform = "translate(" + largeur + "px, " + hauteur + "px)";
       lab.current.style.OTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      setPosition[0] = position;
     } else {
       upDown--;
       nextPos[1]--;
@@ -189,6 +193,7 @@ const Labyrinth = () => {
       lab.current.style.msTransform = "translate(" + largeur + "px, " + hauteur + "px)";
       lab.current.style.MozTransform = "translate(" + largeur + "px, " + hauteur + "px)";
       lab.current.style.OTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      setPosition[0] = position;
     } else {
       nextPos[0]++;
     }
@@ -204,14 +209,20 @@ const Labyrinth = () => {
       lab.current.style.msTransform = "translate(" + largeur + "px, " + hauteur + "px)";
       lab.current.style.MozTransform = "translate(" + largeur + "px, " + hauteur + "px)";
       lab.current.style.OTransform = "translate(" + largeur + "px, " + hauteur + "px)";
+      setPosition[0] = position;
     } else {
       nextPos[0]--;
     }
   };
 
   let resizeTimer;
+  // if (isMobile) {
+  // }
 
-  if (!isMobile) {
+  if (!isMobileOnly) {
+    if (lab.current) {
+      lab.current.style.transition = "all 1.5s ease-in-out";
+    }
     window.addEventListener("resize", function (e) {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
@@ -250,7 +261,7 @@ const Labyrinth = () => {
       </div>
       <div ref={lab} className="lab-wrapper">
         {articles.map((articles, index) => (
-          <LabWrapper article={articles} slide={slide} articles={allArticles} title={articles.id} key={uuid()} />
+          <LabWrapper article={articles} position={position} slide={slide} articles={allArticles} title={articles.id} key={uuid()} />
         ))}
       </div>
     </div>

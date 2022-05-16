@@ -1,3 +1,8 @@
+@font-face {
+  font-family: miniature;
+  src: url(../fonts/miniature.otf);
+}
+
 .single-page-trace {
   height: auto;
   min-height: 100vh;
@@ -23,6 +28,9 @@
       h2 {
         margin: 10px 0px 10px 0px;
         text-align: center;
+        font-family: miniature, sans-serif;
+        text-transform: uppercase;
+        font-weight: normal;
       }
 
       h3 {

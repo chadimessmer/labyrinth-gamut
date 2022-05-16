@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import { Player } from "video-react";
 import { Document, Page } from "react-pdf";
@@ -7,13 +7,13 @@ import SlideShow from "./SlideShow";
 import uuid from "react-uuid";
 import chroma from "chroma-js";
 
-const LabWrapper = ({ articles, article, slide, title }) => {
+const LabWrapper = ({ articles, article, slide, title, position }) => {
   // console.log(chroma("pink").darken().saturate(2).hex());
   let offsetLarge;
   let offsetHauteur;
   let pos = article.xy;
   let style;
-  let color = "hsl(" + Math.random() * 360 + ", 100%, 70%)";
+  let color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
   let beginGrad = "radial-gradient(circle, ";
   let endGrad = "10%, rgba(255,255,255,0) 40%)";
   // let finalColor = beginGrad + color + endGrad;
@@ -21,6 +21,14 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   let thisPopulatedArticle = slide.filter((obj) => {
     return obj.id === title;
   });
+
+  // console.log(position);
+
+  // console.log(pos);
+
+  if (position[0] > 0) {
+    console.log("oui oui je suis là");
+  }
 
   let displayTopLeft;
   let displayTopRight;
@@ -48,7 +56,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     let intermediateColor = Math.abs(colorFull + article.color - 360);
     // console.log(chroma.scale({ h: colorFull, s: 100, l: 70 }, { h: article.color, s: 100, l: 70 }));
 
-    colorLeft = "hsl(" + intermediateColor + ", 100%, 70%)";
+    colorLeft = "hsl(" + intermediateColor + ", 100%, 50%)";
     colorLeftTop = colorLeft;
   } else {
     colorLeft = "hsl(0, 100%, 100%)";
@@ -75,7 +83,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     let colorFull = articleRight[0].color;
     let intermediateColor = Math.abs(colorFull + article.color - 360);
 
-    colorRight = "hsl(" + intermediateColor + ", 100%, 70%)";
+    colorRight = "hsl(" + intermediateColor + ", 100%, 50%)";
   } else {
     colorRight = "hsl(0, 100%, 100%)";
     displayRight = "none";
@@ -103,7 +111,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     let colorFull = articleTop[0].color;
     let intermediateColor = (colorFull + article.color) / 2;
 
-    colorTop = "hsl(" + intermediateColor + ", 100%, 70%)";
+    colorTop = "hsl(" + intermediateColor + ", 100%, 50%)";
     colorTopLeft = colorTop;
     colorTopRight = colorTop;
   } else {
@@ -129,7 +137,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
   if (articleBottom[0]) {
     let colorFull = articleBottom[0].color;
     let intermediateColor = (colorFull + article.color) / 2;
-    colorBottom = "hsl(" + intermediateColor + ", 100%, 70%)";
+    colorBottom = "hsl(" + intermediateColor + ", 100%, 50%)";
   } else {
     colorBottom = "hsl(0, 100%, 100%)";
     displayBottom = "none";
@@ -177,7 +185,7 @@ const LabWrapper = ({ articles, article, slide, title }) => {
     };
   };
 
-  let thisColor = "hsl(" + article.color + ", 100%, 70%)";
+  let thisColor = "hsl(" + article.color + ", 100%, 50%)";
 
   let styleCenter = {
     backgroundColor: thisColor,

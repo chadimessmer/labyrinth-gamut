@@ -1,3 +1,16 @@
+@font-face {
+  font-family: parabole;
+  src: url(../fonts/parabole.otf);
+}
+@font-face {
+  font-family: miniature;
+  src: url(../fonts/miniature.otf);
+}
+.banner-container-lab {
+  div {
+    font-family: parabole, sans-serif;
+  }
+}
 .banner-container {
   a {
     text-decoration: none;
@@ -14,7 +27,18 @@
   div {
     font-size: 3em;
     padding-top: 20px;
+    font-family: parabole;
+    span {
+      font-family: miniature, sans-serif;
+      text-transform: uppercase;
+      // font-weight: normal !important;
+    }
   }
+}
+
+.subtitle-banner {
+  padding-left: 10px;
+  font-weight: normal !important;
 }
 
 .banner-container-lab {

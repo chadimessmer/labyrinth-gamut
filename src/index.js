@@ -26,24 +26,24 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/lounge" element={<Lounge />} />
-          <Route path="/vision" element={<Vision />} />
-          <Route path="/visionary" element={<Visionary />} />
-          <Route path="/chatroom" element={<Chatroom />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="/newchat" element={<NewChat />} />
-          <Route path="/chatroom/:id" element={<Chat />} />
-          <Route path="/trace/:id" element={<SingleTrace />} />
-          <Route path="/contribution/:id" element={<Contribution />} />
-          <Route path="/labyrinth" element={<Labyrinth />} />
-        </Routes>
-      </Router>
-    </Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={store}>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/lounge" element={<Lounge />} />
+        <Route path="/vision" element={<Vision />} />
+        <Route path="/visionary" element={<Visionary />} />
+        <Route path="/chatroom" element={<Chatroom />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/newchat" element={<NewChat />} />
+        <Route path="/chatroom/:id" element={<Chat />} />
+        <Route path="/trace/:id" element={<SingleTrace />} />
+        <Route path="/contribution/:id" element={<Contribution />} />
+        <Route path="/labyrinth" element={<Labyrinth />} />
+      </Routes>
+    </Router>
+  </Provider>,
+  // </React.StrictMode>,
   document.getElementById("root")
 );

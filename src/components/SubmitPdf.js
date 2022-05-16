@@ -62,7 +62,7 @@ const SubmitPdf = ({ thisTrace }) => {
             <input required id="name" name="author" type="text"></input> <br />
             <label htmlFor="title">Title</label> <br />
             <input required id="title" name="title" type="text"></input> <br />
-            <label htmlFor="file">Video</label> <br />
+            <label htmlFor="file">PDF</label> <br />
             <input required name="file" id="file" type="file" accept="application/pdf"></input> <br />
             <label htmlFor="website">Link</label> <br />
             <input type="link" name="website" id="website"></input>

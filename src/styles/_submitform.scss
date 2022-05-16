@@ -31,6 +31,17 @@
     margin-bottom: 50px;
   }
 
+  input[type="file"]::file-selector-button {
+    height: 20px;
+    width: 150px;
+    background-color: #ff6347;
+    border: solid 1px black;
+    border-right: solid 3px black;
+  }
+  input[type="file"]::file-selector-button:hover {
+    cursor: pointer;
+  }
+
   textarea {
     height: 200px !important;
     background-color: #ff6347;

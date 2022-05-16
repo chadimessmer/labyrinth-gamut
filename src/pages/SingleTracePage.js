@@ -45,10 +45,10 @@ const SingleTracePage = ({ children }) => {
   const colorEnd = colorBackground[colorBackground.length - 1];
   const colorLast = colorBackground[colorBackground.length - 2];
 
-  console.log(colorEnd);
+  // console.log(colorEnd);
 
   const styleTop = {
-    backgroundColor: "hsl(" + colorTop + ", 100%, 70%)",
+    backgroundColor: "hsl(" + colorTop + ", 100%, 50%)",
   };
   const styleEnd = {
     position: "absolute",
@@ -56,7 +56,7 @@ const SingleTracePage = ({ children }) => {
     height: "100%",
     backgroundImage: "linear-gradient(" + colorTop + " ," + colorEnd + ")",
   };
-  console.log(styleEnd);
+  // console.log(styleEnd);
 
   return (
     <div style={styleTop} className="single-page-trace">

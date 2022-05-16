@@ -6,7 +6,7 @@ const Banner = ({ subTitle, link }) => {
   return (
     <div className="banner-container">
       <div>
-        <Link to={link}>LABYRINTH</Link> <span>{subTitle}</span>
+        <Link to={link}>LABYRINTH</Link> <span className="subtitle-banner">{subTitle}</span>
       </div>
     </div>
   );
